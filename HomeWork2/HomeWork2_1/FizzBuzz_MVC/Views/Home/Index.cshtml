@@ -1,0 +1,73 @@
+﻿@model FizzBuzz_MVC.Models.FizzBuzz_model
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        #header {
+            height: 30 px;
+            margin: 100 px;
+        }
+
+        h2, h3 {
+            text-align: center;
+        }
+
+        #values {
+            float: left;
+             width: 200px;
+        }
+
+        #main {
+            width: 80%;
+            border-left: 1 px;
+               margin-left: 200px;
+        }
+
+        .field-validation-error {
+            color: #b94a48;
+        }
+
+        input.input-validation-error {
+            border: 1px solid #b94a48;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h2>Fizz Buzz</h2>
+        <h3>@ViewBag.pattern</h3>
+    </div>
+
+    <div id="values">
+        @using (Html.BeginForm())
+        {
+        <p>
+            Start:<br />@Html.TextBoxFor(model => model.start, new { placeholder = "Начальное число" })@Html.ValidationMessageFor(model => model.start)<br /><!--<input type="text" /><br />-->
+            End:<br />@Html.TextBoxFor(model => model.end, new { placeholder = "Конечное число" })@Html.ValidationMessageFor(model => model.end)<br />
+            Diliver 1:<br />@Html.TextBoxFor(model => model.divider1, new { placeholder = "Делитель 1" })@Html.ValidationMessageFor(model => model.divider1)<br />
+            Diliver 2:<br />@Html.TextBoxFor(model => model.divider2, new { placeholder = "Делитель 2" })@Html.ValidationMessageFor(model => model.divider2)
+        </p>
+
+            <p><input type="submit" value="Выводим" /></p>
+
+        }
+    </div>
+    <div id="main">
+        <p>
+            @foreach(var str in @ViewBag.FizzBuzz)
+            {
+                @str<br />
+            }
+
+        </p>
+    </div>
+
+</body>
+</html>

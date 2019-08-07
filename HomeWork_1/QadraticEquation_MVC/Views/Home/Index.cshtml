@@ -1,0 +1,49 @@
+﻿@model QadraticEquation_MVC.Models.QEModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Qadratic Equation</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm())
+        {
+            /*
+             * Вот тут я наверное поступаю ушло
+             */
+            if (@ViewBag.Message == String.Empty)
+            {
+                <input type="number" name="A" placeholder="A" required /><b>x²+</b>
+                <input type="number" name="B" placeholder="B" required /><b>x+</b>
+                <input type="number" name="C" placeholder="C" required /><b>=0</b>
+            }
+            else
+            {
+                <input type="number" name="A" placeholder="A" value="@Model.A" required /><b>x²+</b>
+                <input type="number" name="B" placeholder="B" value="@Model.B" required /><b>x+</b>
+                <input type="number" name="C" placeholder="C" value="@Model.C" required /><b>=0</b>
+            }
+            <input type="submit" value="Считаем" />
+
+            if (@ViewBag.Error == 1)
+            {
+                <p style="color:red;">@ViewBag.Message</p>
+            }
+            else
+            {
+                <p>@ViewBag.Message</p>
+            }
+
+            <p>@ViewBag.Result</p>
+            <p>@ViewBag.LinMult</p>
+
+        }
+    </div>
+</body>
+</html>

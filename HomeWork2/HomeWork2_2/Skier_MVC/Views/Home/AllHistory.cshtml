@@ -1,0 +1,29 @@
+﻿@using Skier_lib;
+@{
+    ViewBag.Title = "AllHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>История</h2>
+@{ var history = (Dictionary<uint, List<Skier_lib.SkierModel>>)ViewBag.AllTraining; }
+
+@if (history.Count != 0)
+{
+    foreach (var key in history.Keys)
+    {
+        <p> Спортсмен № @key </p>
+        var list = SkierTools.ListFormatingStrHistory(history[key]);
+        foreach (var node in list)
+        {
+            @node
+            <br />
+        }
+        <br />
+
+    }
+}
+else
+{
+    <p>История пуста</p>
+}
+

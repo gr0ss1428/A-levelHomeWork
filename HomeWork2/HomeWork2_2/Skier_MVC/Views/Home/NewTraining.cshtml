@@ -1,0 +1,69 @@
+﻿@model Skier_lib.SkierModel
+@{
+    ViewBag.Title = "NewTraining";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #header {
+        height: 30 px;
+        margin: 100 px;
+    }
+
+    h2, h3, h5 {
+        text-align: center;
+    }
+
+    #values {
+        float: left;
+        width: 200px;
+    }
+
+    #main {
+        width: 80%;
+        border-left: 1 px;
+        margin-left: 200px;
+    }
+
+    .field-validation-error {
+        color: #b94a48;
+    }
+
+    input.input-validation-error {
+        border: 1px solid #b94a48;
+    }
+</style>
+<div id="header"><h2>Тренировки</h2> </div>
+<div id="values">
+    @using (Html.BeginForm())
+    {
+
+    <p>
+
+        @if (Model.id == null)
+        {
+            <span>Номер:</span><br />@Html.TextBoxFor(model => model.id, new { placeholder = "Номер" })<!--<input type="text" /><br />-->
+            <span> Имя:</span><br />@Html.TextBoxFor(model => model.name, new { placeholder = "Имя" })
+        }
+        else
+        {
+            <span>Номер:</span><br />@Html.TextBoxFor(model => model.id, new { placeholder = "Номер", @readonly = "readonly" })<!--<input type="text" /><br />-->
+            <span> Имя:</span><br />@Html.TextBoxFor(model => model.name, new { placeholder = "Имя", @readonly = "readonly"  })
+        }
+
+
+        Дистанция 1 тренировки:<br />@Html.TextBoxFor(model => model.distFirstDay, new { placeholder = "Первая тренировка" })
+        Ускорение %:<br />@Html.TextBoxFor(model => model.persentBoost, new { placeholder = "Ускорение %" })
+        Пробежал км:<br />@Html.TextBoxFor(model => model.calcDist, new { placeholder = "Нужная дистанция" })
+    </p>
+
+        <p><input type="submit" value="Считаем" /></p>
+
+    }
+</div>
+<div id="main">
+    @foreach (var str in @ViewBag.thisTraining)
+    {
+        @str<br />
+    }
+</div>
+
