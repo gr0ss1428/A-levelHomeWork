@@ -12,7 +12,7 @@
     foreach (var key in history.Keys)
     {
         <p> Спортсмен № @key </p>
-        var list = SkierTools.ListFormatingStrHistory(history[key]);
+        var list = SkierTools.ListFormatingStrHistoryRu(history[key]);
         foreach (var node in list)
         {
             @node

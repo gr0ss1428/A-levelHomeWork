@@ -142,7 +142,7 @@ namespace Skier_console
                         Console.WriteLine("Number skies:{0}", id);
                         if (history[id].Count != 0)
                         {
-                            foreach (var h in SkierTools.ListFormatingStrHistory(history[id]))
+                            foreach (var h in SkierTools.ListFormatingStrHistoryEn(history[id]))
                             {
                                 Console.WriteLine("\t" + h);
                             }
@@ -182,7 +182,7 @@ namespace Skier_console
                     if(history[key].Count==0) Console.WriteLine("lazy person");
                     else
                     {
-                        foreach (var node in SkierTools.ListFormatingStrHistory(history[key]))
+                        foreach (var node in SkierTools.ListFormatingStrHistoryEn(history[key]))
                         {
                             Console.WriteLine("\t"+node);
                         }

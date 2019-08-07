@@ -8,9 +8,9 @@ namespace Skier_MVC.Controllers
 {
     /*
      * Это лютый звиздец что то делаешь и вроде как примерно понимаешь что делаешь но все же не совсем
-     * особенно не понятно было почему глобальный солварь в каждом контролере пустой пришлось сделать такую передачу через TempData.
-     * Но и с ним тоже не все так было понятно. Правда я нашел потом как передавать через сылку но не пробовал передавать словарь моделей через ссылку
-     * использовал вывод из длл которая готовила для консоли что не совсем красиво получилос
+     * особенно не понятно было почему глобальный Dictionary в каждом контролере пустой пришлось сделать такую передачу через TempData.
+     * Но и с ним тоже не все так было понятно. Правда я нашел потом как передавать через сылку, но не пробовал передавать Dictionary моделей через ссылку
+     * 
      */
     public class HomeController : Controller
     {
@@ -24,7 +24,7 @@ namespace Skier_MVC.Controllers
             TempData["history"] = history;
             return View(history);
         }
-      
+        [HttpGet]
         public ActionResult NewTraining(uint? id)
         {
             
@@ -41,7 +41,7 @@ namespace Skier_MVC.Controllers
                     {
                         sk.id = id;
                         sk.name = history[(uint)id][0].name;
-                        ViewBag.thisTraining = SkierTools.ListFormatingStrHistory(history[(uint)id]);
+                        ViewBag.thisTraining = SkierTools.ListFormatingStrHistoryRu(history[(uint)id]);
                     }
                 }
             }
@@ -51,13 +51,18 @@ namespace Skier_MVC.Controllers
         public ActionResult NewTraining(SkierModel skierModel)
         {
             ViewBag.history = String.Empty;
+           // ViewBag.thisTraining = String.Empty;
             history = (Dictionary<uint, List<SkierModel>>)TempData["history"];
             if (ModelState.IsValid)
             {
                 skierModel.calcDay = SkierTools.GetDayRunDistanse(skierModel.distFirstDay, skierModel.persentBoost, skierModel.calcDist);
                 if (!history.ContainsKey((uint)skierModel.id)) history.Add((uint)skierModel.id, new List<SkierModel>() { skierModel });
                 else history[(uint)skierModel.id].Add(skierModel);
-                ViewBag.thisTraining = SkierTools.ListFormatingStrHistory( history[(uint)skierModel.id]);
+                ViewBag.thisTraining = SkierTools.ListFormatingStrHistoryRu(history[(uint)skierModel.id]);
+            }
+            else
+            {
+                if (history.ContainsKey((uint)skierModel.id)) ViewBag.thisTraining = SkierTools.ListFormatingStrHistoryRu(history[(uint)skierModel.id]);
             }
             TempData["history"] = history;
             return View(skierModel);

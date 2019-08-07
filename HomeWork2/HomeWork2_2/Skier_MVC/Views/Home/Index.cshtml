@@ -26,7 +26,7 @@
     {
         if (@history[key].Count != 0)
         {
-            @Html.ActionLink("№ "+@history[key][0].id.ToString()+" Имя: "+@history[key][0].name, "NewTraining", "Home",
+            @Html.ActionLink("Спортсмен под № "+@history[key][0].id.ToString()+" Имя: "+@history[key][0].name, "NewTraining", "Home",
                                                            routeValues: new {id = key },htmlAttributes: null)<br />
         }
 
