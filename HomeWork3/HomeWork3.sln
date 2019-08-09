@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29201.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alcohol_Lib", "Alcohol_Lib\Alcohol_Lib.csproj", "{47724F7C-27F8-46D4-9C59-00322899526E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuhlishkoBase_Console", "BuhlishkoBase_Console\BuhlishkoBase_Console.csproj", "{66F4A3D0-81D6-4796-9004-6A8517CC8EC8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47724F7C-27F8-46D4-9C59-00322899526E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47724F7C-27F8-46D4-9C59-00322899526E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47724F7C-27F8-46D4-9C59-00322899526E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47724F7C-27F8-46D4-9C59-00322899526E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66F4A3D0-81D6-4796-9004-6A8517CC8EC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66F4A3D0-81D6-4796-9004-6A8517CC8EC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66F4A3D0-81D6-4796-9004-6A8517CC8EC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66F4A3D0-81D6-4796-9004-6A8517CC8EC8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C1084B41-F406-47EA-AC71-7E9DDCC9D0AE}
+	EndGlobalSection
+EndGlobal
