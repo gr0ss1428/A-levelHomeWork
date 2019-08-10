@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace SomeCollection
 {
+    /*
+     * Жалкая попытка повторить std vector mini
+     */
     class Vector<T> : IEnumerable
     {
         T[] ArrayVector;
@@ -17,15 +20,40 @@ namespace SomeCollection
         }
 
         public int Lenght { get; private set; }
-        public void Add(T value)
+        public void PushFront(T value)
         {
-            this.ArrayVector = ArrCopy();
+            this.ArrayVector = ArrCopyF();
+            this.ArrayVector[0] = value;
+            this.Lenght++;
+        }
+        public void PushFront(Vector<T> value)
+        {
+            this.ArrayVector = ArrCopyF(value.Lenght);
+            for (int i = 0; i < value.Lenght; i++)
+            {
+                this.ArrayVector[i] = value[i];
+            }
+
+            this.Lenght += value.Lenght;
+        }
+        public void PushBack(T value)
+        {
+            this.ArrayVector = ArrCopyB();
             this.ArrayVector[this.Lenght] = value;
             this.Lenght++;
         }
-        public void Add(Vector<T> value)
+        T[] ArrCopyF(int addLenght = 1)
         {
-            this.ArrayVector = ArrCopy(value.Lenght);
+            T[] TempArr = new T[this.Lenght + addLenght];
+            for (int i = addLenght, y=0 ; i < TempArr.Length; i++,y++)
+            {
+                TempArr[i] = this.ArrayVector[y];
+            }
+            return TempArr;
+        }
+        public void PushBack(Vector<T> value)
+        {
+            this.ArrayVector = ArrCopyB(value.Lenght);
             for (int i = this.Lenght , y = 0; i < this.Lenght + value.Lenght; i++, y++)
             {
                 this.ArrayVector[i] = value[y];
@@ -33,7 +61,7 @@ namespace SomeCollection
            
             this.Lenght+= value.Lenght;
         }
-        T[] ArrCopy(int addLenght = 1)
+        T[] ArrCopyB(int addLenght = 1)
         {
             T[] TempArr = new T[this.Lenght + addLenght];
             for (int i = 0; i < this.ArrayVector.Length; i++)
@@ -105,13 +133,10 @@ namespace SomeCollection
                 else return this.ArrayVector[index];
             }
         }
-
         IEnumerator IEnumerable.GetEnumerator()
         {
             return new MyEnumerator<T>(this);
         }
-
-
     }
     class MyEnumerator<T> : IEnumerator
     {
@@ -123,7 +148,6 @@ namespace SomeCollection
             vector = vk;
         }
         public object Current => curentItems;
-
         public bool MoveNext()
         {
             if ((index++) >= vector.Lenght - 1) return false;
