@@ -1,0 +1,60 @@
+﻿@model Buhlishko_MVC.Models.BottleModel
+@{
+    ViewBag.Title = "Бухашка-новый товар";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    td {
+        padding: 10px;
+        text-align: center;
+        border: solid 1px;
+    }
+
+    .bottle {
+        width: 150px;
+    }
+
+    .field-validation-error {
+        color: #b94a48;
+    }
+
+    input.input-validation-error {
+        border: 1px solid #b94a48;
+    }
+</style>
+<h2>Новый товар</h2>
+<div class="body-content">
+    <table>
+        <thead>
+            <tr>
+                <td>Вид</td>
+                <td>Название</td>
+                <td>Производитель</td>
+                <td>Содеражание спирта</td>
+                <td>Калорийность (ккал)</td>
+                <td>Объем</td>
+                <td>Количество</td>
+                <td>Стоимость</td>
+                <td style="border:0px"></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @using (Html.BeginForm())//("AddNewPosition", "Home", FormMethod.Post))
+                {
+                    <td>@Html.TextBoxFor(model => model.Types, htmlAttributes: new { placeholder = "Вид", @class = "bottle" })</td>
+                    <td>@Html.TextBoxFor(model => model.Name, htmlAttributes: new { placeholder = "Название", @class = "bottle" })</td>
+                    <td>@Html.TextBoxFor(model => model.Manufacturer, htmlAttributes: new { placeholder = "Производитель", @class = "bottle" })</td>
+                    <td>@Html.TextBoxFor(model => model.AbvPercent, htmlAttributes: new { placeholder = "Об.", @class = "bottle" })</td>
+                    <td>@Html.TextBoxFor(model => model.KCal, htmlAttributes: new { placeholder = "Ккал", @class = "bottle" })</td>
+                    <td>@Html.TextBoxFor(model => model.Volume, htmlAttributes: new { placeholder = "Объём", @class = "bottle" })</td>
+                    <td>@Html.TextBoxFor(model => model.Quantity, htmlAttributes: new { placeholder = "Кол-во", @class = "bottle" })</td>
+                    <td>@Html.TextBoxFor(model => model.Prise, htmlAttributes: new { placeholder = "Цена", @class = "bottle" })</td>
+
+                    <td style="border:0px"><input class="btn btn-info" type="submit" value="Добавить" /></td>
+                }
+            </tr>
+        </tbody>
+    </table>
+</div>
+

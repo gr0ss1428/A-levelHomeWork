@@ -1,0 +1,116 @@
+﻿@model Buhlishko_MVC.Models.BottleModel
+
+@{
+    ViewBag.Title = $"Бухлишко-{ViewBag.types}";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    td {
+        padding: 10px;
+        text-align: center;
+        border: solid 1px;
+    }
+
+    .bottle {
+        width: 150px;
+    }
+
+    .field-validation-error {
+        color: #b94a48;
+    }
+
+    input.input-validation-error {
+        border: 1px solid #b94a48;
+    }
+</style>
+<h1>@ViewBag.types</h1>
+@{ var Arr = (Alcohol_Lib.AlcoholBottle[])ViewData["ArrPos"];
+    uint count = 0;
+    uint countBottle = 0;
+    int pos = 0;
+}
+<div class="body-content ">
+    <table>
+        <thead>
+            <tr>
+                <td>Название</td>
+                <td>Производитель</td>
+                <td>Содеражание спирта</td>
+                <td>Калорийность (ккал)</td>
+                <td>Объем</td>
+                <td>Количество</td>
+                <td>Стоимость</td>
+                <td>Общаяя стоимость</td>
+                <td style="border:0px"></td>
+                <td style="border:0px"></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bottle in @Arr)
+            {
+            <tr>
+                <td>@bottle.Name</td>
+                <td>@bottle.Manufacturer</td>
+                <td>@bottle.AbvPercent</td>
+                <td>@bottle.KCal</td>
+                <td>@bottle.Volume</td>
+                @using (Html.BeginForm("EditPosition", "Home", FormMethod.Post))
+                {
+                    <td><input type="text" name="Quantity" value=@bottle.Quantity class="bottle"></td>
+                    <td>
+                        <input type="text" name="Prise" value=@bottle.Prise >
+                        <input type="hidden" name="Types" value=@bottle.Types >
+                        <input type="hidden" name="Pos" value=@pos>
+                    </td>
+                    @*<td>@bottle.Prise</td>*@
+                    <td>@bottle.PrisePosition</td>
+                    <td style="border:0px"><input class="btn btn-info" btn-info" type="submit" value="Изменить" /></td>
+                }
+                <td style="border:0px">
+                    @Html.ActionLink("-", "Delposition", "Home", routeValues: new { types = ViewBag.types, possition = pos }, htmlAttributes: new { @class = "btn btn-danger" })
+                </td>
+                @{ pos++;}
+                @{ count += bottle.PrisePosition;}
+                @{ countBottle += @bottle.Quantity;}
+            </tr>
+            }
+            <tr>
+                @using (Html.BeginForm())//("AddNewPosition", "Home", FormMethod.Post))
+                {
+
+                    <td>@Html.TextBoxFor(model => model.Name, htmlAttributes: new { placeholder = "Название", @class = "bottle"})</td>
+                    <td>@Html.TextBoxFor(model => model.Manufacturer, htmlAttributes: new { placeholder = "Производитель", @class = "bottle" })</td>
+                    <td>@Html.TextBoxFor(model => model.AbvPercent, htmlAttributes: new { placeholder = "Об.", @class = "bottle" })</td>
+                    <td>@Html.TextBoxFor(model => model.KCal, htmlAttributes: new { placeholder = "Ккал", @class = "bottle" })</td>
+                    <td>@Html.TextBoxFor(model => model.Volume, htmlAttributes: new { placeholder = "Объём", @class = "bottle" })</td>
+                    <td>@Html.TextBoxFor(model => model.Quantity, htmlAttributes: new { placeholder = "Кол-во", @class = "bottle" })</td>
+                    <td>@Html.TextBoxFor(model => model.Prise, htmlAttributes: new { placeholder = "Цена", @class = "bottle" })</td>
+
+                    <td></td>
+                 //  @Html.TextBoxFor(model => model.Types, htmlAttributes: new { @value = ViewBag.types, type = "hidden" })
+                    <td style="border:0px"><input class="btn btn-info" btn-info" type="submit" value="Добавить" /></td>
+                    <td style="border:0px"></td>
+
+
+                }
+            </tr>
+            <tr>
+                <td style="border:0px"></td>
+                <td style="border:0px"></td>
+                <td style="border:0px"></td>
+                <td style="border:0px"></td>
+                <td style="border:0px"></td>
+                <td style="border:0px"></td>
+                <td style="border:0px">@Html.ActionLink("Удалить все", "DelAllPositioninTypes", "Home", routeValues: new { types = ViewBag.types }, htmlAttributes: new { @class = "btn btn-danger" })</td>
+                <td style="border:0px"></td>
+            </tr>
+
+        </tbody>
+    </table>
+    <br />
+    
+    <br />
+    <br />
+    <p>Итого:<br /> Бутылок на складе: @countBottle<br />  Общая стоимость : @count</p>
+</div>
+

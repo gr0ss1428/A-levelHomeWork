@@ -209,13 +209,13 @@ namespace BuhlishkoBase_Console
                 }
                 else if (selectType == alcoholTypes.Count - 1)
                 {
-                    AlcoholBase.AddNewBottle(newBotlle());
+                    AlcoholBase.AddNewPosition(newBotlle());
                     Console.WriteLine($"Успешно добавлено.");
                     addRunMenu(ref success, "Добавить ещё");
                 }
                 else
                 {
-                    AlcoholBase.AddNewBottle(newBotlle(AlcoholBase.GetAlcoholTypesLst().ToArray()[selectType - 1]));
+                    AlcoholBase.AddNewPosition(newBotlle(AlcoholBase.GetAlcoholTypesLst().ToArray()[selectType - 1]));
                     Console.WriteLine($"Успешно добавлено.");
                     addRunMenu(ref success, "Добавить ещё");
                 }

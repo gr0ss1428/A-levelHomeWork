@@ -32,10 +32,24 @@ namespace Alcohol_Lib
         }
         public static AlcoholBottle[] GetAlcoholItemsByTypesArr(string types)
         {
-
-            return _alcoholBase[types].ToArray();
+            if (types != null)
+            {
+                if (_alcoholBase.ContainsKey(types)) return _alcoholBase[types].ToArray();
+                else return null;
+            }
+            else return null;
         }
-        public static void AddNewBottle(AlcoholBottle alcoholBottle)
+        public static AlcoholBottle[] GetAlcoholItemsByTypesArr(uint typesPos)
+        {
+            if (_alcoholBase.Count > typesPos)
+            {
+                string typesStr = _alcoholBase.Keys.ToArray()[typesPos];
+                return _alcoholBase[typesStr].ToArray();
+            }
+            else return null;
+            
+        }
+        public static void AddNewPosition(AlcoholBottle alcoholBottle)
         {
             newAlcoholTypes(alcoholBottle.Types);
             if (!_alcoholBase[alcoholBottle.Types].Contains(alcoholBottle)) _alcoholBase[alcoholBottle.Types].Add(alcoholBottle);
@@ -66,6 +80,15 @@ namespace Alcohol_Lib
             if (_alcoholBase.ContainsKey(typesStr))
             {
                 return _alcoholBase[typesStr].Remove(_alcoholBase[typesStr].ToArray()[numBottle]);
+            }
+            else return false;
+        }
+        public static bool RemoveAlcohoBottleinBase(string types, uint numBottle)//Удаление по ключу и  порядковому номеру
+        {
+            
+            if (_alcoholBase.ContainsKey(types))
+            {
+                return _alcoholBase[types].Remove(_alcoholBase[types].ToArray()[numBottle]);
             }
             else return false;
         }
@@ -118,12 +141,12 @@ namespace Alcohol_Lib
             AlcoholBottle aw1 = new AlcoholBottle("Wine", "Charton Bordeaux", "Bordeaux", 12, 83, 750, 30, 210);
             AlcoholBottle aw2 = new AlcoholBottle("Wine", "Chateau Prieure-Lichine", "Chateau Prieure-Lichine", 12.5, 83, 750, 30, 6200);
             AlcoholBottle aw3 = new AlcoholBottle("Wine", "Moet & Chandon Brut Imperial", "Moet", 12, 80, 750, 10, 1800);
-            AlcoholBase.AddNewBottle(ab1);
-            AlcoholBase.AddNewBottle(ab2);
-            AlcoholBase.AddNewBottle(ab3);
-            AlcoholBase.AddNewBottle(aw1);
-            AlcoholBase.AddNewBottle(aw2);
-            AlcoholBase.AddNewBottle(aw3);
+            AlcoholBase.AddNewPosition(ab1);
+            AlcoholBase.AddNewPosition(ab2);
+            AlcoholBase.AddNewPosition(ab3);
+            AlcoholBase.AddNewPosition(aw1);
+            AlcoholBase.AddNewPosition(aw2);
+            AlcoholBase.AddNewPosition(aw3);
         }
     }
 }

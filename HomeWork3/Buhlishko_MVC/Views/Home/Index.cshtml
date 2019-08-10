@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Бухлико склад";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    h1{text-align:center}
+    .page-header{
+        color:aquamarine;
+        border:solid 1px;
+        border-color:brown;
+    }
+    #menu {
+        float: left;
+        width: 300px;
+    }
+    .navbar-left{
+        width:200 px;
+    }
+    td{
+        padding:10px;
+        text-align:center;
+      
+    }
+    a{
+        font-size:25px;
+        text-align:center
+    }
+</style>
+<h1 class="page-header">Бухлишко</h1>
+
+<div class="body-content">
+    <div class="navbar-left" style="margin-right:30px;margin-top:20px">
+        <span style="font-size:20px;color:blueviolet"> Имеющиеся виды:<br /></span>
+        @foreach (var types in Alcohol_Lib.AlcoholBase.GetAlcoholTypesLst())
+        {
+            @Html.ActionLink(types, "ByTypes", "Home", routeValues: new { types = types }, htmlAttributes: new { @class = "text-info" }) <br />
+        }
+        <br />
+        <br />
+        @Html.ActionLink("Добавить товар", "NewPosition", "Home", htmlAttributes: new { @class = "btn btn-primary" })
+    </div>
+    <div class="container-fluid" >
+        <table class="table-bordered">
+            <thead >
+                <tr>
+                    <td >Название</td>
+                    <td>Производитель</td>
+                    <td>Содеражание спирта</td>
+                    <td>Калорийность (ккал)</td>
+                    <td>Объем</td>
+                    <td>Количество</td>
+                    <td>Стоимость</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var types in Alcohol_Lib.AlcoholBase.GetAlcoholTypesLst())
+                {
+
+                    <tr>
+                        <td colspan="7">
+                            <b> @types</b>
+                        </td>
+                    </tr>
+
+
+                    foreach (var bottle in Alcohol_Lib.AlcoholBase.GetAlcoholItemsByTypesArr(types))
+                    {
+                        <tr>
+                            <td>@bottle.Name</td>
+                            <td>@bottle.Manufacturer</td>
+                            <td>@bottle.AbvPercent</td>
+                            <td>@bottle.KCal</td>
+                            <td>@bottle.Volume</td>
+                            <td>@bottle.Quantity</td>
+                            <td>@bottle.Prise</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

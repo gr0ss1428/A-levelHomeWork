@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alcohol_Lib", "Alcohol_Lib\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuhlishkoBase_Console", "BuhlishkoBase_Console\BuhlishkoBase_Console.csproj", "{66F4A3D0-81D6-4796-9004-6A8517CC8EC8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buhlishko_MVC", "Buhlishko_MVC\Buhlishko_MVC.csproj", "{28178B8F-FFE7-4163-B719-8AFF33A9D08E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SomeCollection", "SomeCollection\SomeCollection.csproj", "{8DF2F0EC-C578-4C49-BE99-F3570F7C503D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{66F4A3D0-81D6-4796-9004-6A8517CC8EC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66F4A3D0-81D6-4796-9004-6A8517CC8EC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66F4A3D0-81D6-4796-9004-6A8517CC8EC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28178B8F-FFE7-4163-B719-8AFF33A9D08E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28178B8F-FFE7-4163-B719-8AFF33A9D08E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28178B8F-FFE7-4163-B719-8AFF33A9D08E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28178B8F-FFE7-4163-B719-8AFF33A9D08E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DF2F0EC-C578-4C49-BE99-F3570F7C503D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DF2F0EC-C578-4C49-BE99-F3570F7C503D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DF2F0EC-C578-4C49-BE99-F3570F7C503D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DF2F0EC-C578-4C49-BE99-F3570F7C503D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
