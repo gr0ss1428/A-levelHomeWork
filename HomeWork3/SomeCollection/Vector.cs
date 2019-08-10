@@ -9,6 +9,7 @@ namespace SomeCollection
 {
     /*
      * Жалкая попытка повторить std vector mini
+     * 
      */
     class Vector<T> : IEnumerable
     {
