@@ -18,7 +18,7 @@ namespace Array_Lib
                 else return 0;
             }
         }
-        static public int[,] CurentMatrix
+        static public int[,] GetCurentMatrix
         {
             get
             {
@@ -28,7 +28,7 @@ namespace Array_Lib
         }
         static public int GetCurrentMatrixPosInHistory
         {
-            get { return currentPos + 1; }
+            get { return currentPos; }
         }
         static public int GetMatrixSizeByPos(int pos)
         {
@@ -47,6 +47,12 @@ namespace Array_Lib
         static History()
         {
             currentPos = -1;
+            History.NewGenArray(5);
+            History.NewGenArray(6);
+            History.NewGenArray(7);
+            History.NewGenArray(8);
+            History.NewGenArray(9);
+            History.NewGenArray(10);
         }
         static public void NewGenArray(int size)
         {

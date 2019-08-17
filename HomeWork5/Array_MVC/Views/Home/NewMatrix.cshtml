@@ -1,0 +1,35 @@
+﻿@model Array_MVC.Models.NewMatrixModel
+@{
+    ViewBag.Title = "Новая матрица";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+     .field-validation-error {
+        color: #b94a48;
+    }
+
+    input.input-validation-error {
+        border: 1px solid #b94a48;
+    }
+</style>
+<h2>Создание новой матрицы</h2>
+<div>
+    <table>
+        @using (Html.BeginForm())
+        {
+            <tr>
+                <td>
+                    @Html.TextBoxFor(model => model.Size, htmlAttributes: new { placeholder = "Размер" })<br />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br />
+                    <br />
+                    <input type="submit" class="btn btn-info" value="Добавить" />
+                </td>
+            </tr>
+
+        }
+    </table>
+</div>

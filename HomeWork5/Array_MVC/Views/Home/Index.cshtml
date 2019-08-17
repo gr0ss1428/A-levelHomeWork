@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Array";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin:auto" class="navbar-left">
+    <h3 style="text-align:center">История</h3>
+    <ul style="margin:auto">
+        @foreach(var md in Model.listModels)
+        {
+            <li style="margin:auto">@Html.ActionLink($"№{md.pos + 1} размер {md.size}x{md.size} ", "ViewMatrix", "Home", routeValues: new { pos = md.pos },htmlAttributes: new { @class = "text-info" })</li>
+        }
+    </ul>
+
+</div>

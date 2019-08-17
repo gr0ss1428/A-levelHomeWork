@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "Просмотр Матриц";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .matrixTd {
+        width: 20px;
+        padding: 5px;
+        text-align: center
+    }
+
+    .tdMain {
+        padding: 10px;
+        text-align: center;
+    }
+
+    table {
+        margin: auto;
+    }
+</style>
+<h2 style="text-align:center;">Матрица №@ViewBag.count размер @Model.Size x @Model.Size </h2>
+<table class="table-bordered">
+    <tr>
+        <td class="tdMain">
+            <b>  Истинная</b>
+        </td>
+        <td class="tdMain">
+            <b>Верхная треугольная матрица</b>
+        </td>
+    </tr>
+    <tr>
+        <td class="tdMain" style="align-items:center">
+            <table>
+                @for (int i = 0; i < Model.Size; i++)
+{
+                    <tr>
+                        @for (int y = 0; y < Model.Size; y++)
+{
+                            <td class="matrixTd">@Model.Matrix[i, y]</td>
+
+}
+                    </tr>
+
+}
+            </table>
+        </td>
+        <td class="tdMain">
+            <table>
+                @for (int i = 0; i < Model.Size; i++)
+{
+                    <tr>
+                        @for (int y = 0; y < Model.Size; y++)
+{
+                            <td class="matrixTd">@if (Model.MatrixUpperTriangular[i, y] != 0)
+{@Model.MatrixUpperTriangular[i, y]}</td>
+
+}
+                    </tr>
+
+}
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td class="tdMain">
+            <b>Нижняя треугольная матрица</b>
+        </td>
+        <td class="tdMain">
+            <b>Транспонированная матрица</b>
+        </td>
+    </tr>
+    <tr>
+        <td class="tdMain">
+            <table>
+                @for (int i = 0; i < Model.Size; i++)
+{
+                    <tr>
+                        @for (int y = 0; y < Model.Size; y++)
+{
+                            <td class="matrixTd">@if (Model.MatrixLowerTriangular[i, y] != 0)
+{@Model.MatrixLowerTriangular[i, y]}</td>
+
+}
+                    </tr>
+
+}
+            </table>
+        </td>
+        <td class="tdMain">
+            <table>
+                @for (int i = 0; i < Model.Size; i++)
+{
+                    <tr>
+                        @for (int y = 0; y < Model.Size; y++)
+{
+                            <td class="matrixTd">@Model.MatrixTranspose[i, y]</td>
+
+}
+                    </tr>
+
+}
+            </table>
+        </td>
+    </tr>
+</table>
+<br />
+@{ int nextPos = Model.Count + 1;
+    int backPos = Model.Count - 1;
+    if (backPos < 0) { backPos = 0; }
+    if (nextPos >= Model.HistoryCount) { nextPos = Model.HistoryCount - 1; }
+    }
+
+@if (Model.Count > 0){@Html.ActionLink("Назад", "ViewMatrix", "Home", routeValues: new { pos = backPos }, htmlAttributes: new { @class = "btn btn-info navbar-left" })}
+
+@if (Model.Count < Model.HistoryCount-1) {@Html.ActionLink("Вперед", "ViewMatrix", "Home", routeValues: new { pos = nextPos }, htmlAttributes: new { @class = "btn btn-info navbar-right" })}

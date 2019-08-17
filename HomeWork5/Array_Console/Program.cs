@@ -16,12 +16,6 @@ namespace Array_Console
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             bool exit = false;
             int selectedMenu = 0;
-            History.NewGenArray(5);
-            History.NewGenArray(6);
-            History.NewGenArray(7);
-            History.NewGenArray(8);
-            History.NewGenArray(9);
-            History.NewGenArray(10);
             const int ExitMainMenu = 3;
             do
             {
@@ -83,7 +77,7 @@ namespace Array_Console
             bool exit = false;
             const int ExitMenu = 3;
             bool colored = false;
-            if (History.CurentMatrix == null)
+            if (History.GetCurentMatrix == null)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Матрица не задана");
@@ -106,11 +100,11 @@ namespace Array_Console
                             selectedMenu = Menu(new List<string>() { "Быстро", "Медленно", "Назад" }, ExitMenu,  null, colored, true);
                             if (selectedMenu == 0)
                             {
-                                matrix = History.Transpose(History.CurentMatrix);
+                                matrix = History.Transpose(History.GetCurentMatrix);
                             }
                             else if (selectedMenu == 1)
                             {
-                                matrix = SlowTranspose(History.CurentMatrix);
+                                matrix = SlowTranspose(History.GetCurentMatrix);
                             }
                             break;
                         case 1:
@@ -118,11 +112,11 @@ namespace Array_Console
                             selectedMenu = Menu(new List<string>() { "Быстро", "Медленно", "Назад" }, ExitMenu, null, colored, true);
                             if (selectedMenu == 0)
                             {
-                                matrix = History.UpperTriangular(History.CurentMatrix);
+                                matrix = History.UpperTriangular(History.GetCurentMatrix);
                             }
                             else if (selectedMenu == 1)
                             {
-                                matrix = SlowUpTriangular(History.CurentMatrix);
+                                matrix = SlowUpTriangular(History.GetCurentMatrix);
                             }
                             break;
                         case 2:
@@ -130,11 +124,11 @@ namespace Array_Console
                             selectedMenu = Menu(new List<string>() { "Быстро", "Медленно", "Назад" }, ExitMenu, null, colored, true);
                             if (selectedMenu == 0)
                             {
-                                matrix = History.LowerTriangular(History.CurentMatrix);
+                                matrix = History.LowerTriangular(History.GetCurentMatrix);
                             }
                             else if (selectedMenu == 1)
                             {
-                                matrix = SlowDownTriangular(History.CurentMatrix);
+                                matrix = SlowDownTriangular(History.GetCurentMatrix);
                             }
                             break;
                         case ExitMenu:
@@ -192,14 +186,14 @@ namespace Array_Console
                 if (History.GetCurrentMatrixSize() == 0) Console.WriteLine("Текущая матрица пуста");
                 else
                 {
-                    Console.WriteLine($"Текущая матрица №{History.GetCurrentMatrixPosInHistory} {History.GetCurrentMatrixSize()}x{History.GetCurrentMatrixSize()}");
+                    Console.WriteLine($"Текущая матрица №{History.GetCurrentMatrixPosInHistory+1} {History.GetCurrentMatrixSize()}x{History.GetCurrentMatrixSize()}");
                 }
             }
             else
             {
                 if (History.GetCurrentMatrixSize() != 0)
                 {
-                    PrintMatrix(History.CurentMatrix, false);
+                    PrintMatrix(History.GetCurentMatrix, false);
                     Console.SetCursorPosition(0, Console.CursorTop + 1);
                 }
                 if (workMatrix != null)
