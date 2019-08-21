@@ -10,7 +10,7 @@ namespace HomeWork6
     {
         public int X { get; set; }
         public int Y { get; set; }
-        public char Ch {get; set; }
+        public char Ch { get; set; }
         public Point(int x, int y, char ch)
         {
             X = x;
@@ -20,15 +20,22 @@ namespace HomeWork6
         public void DrawPoint()
         {
             if (X < 0) X = 0;
-            Console.SetCursorPosition(X,Y);
+            Console.SetCursorPosition(X, Y);
             Console.Write(Ch);
         }
-
         public void ClearPoint()
         {
             if (X < 0) X = 0;
             Console.SetCursorPosition(X, Y);
             Console.Write(' ');
         }
-    } 
+        public static bool operator ==(Point p1, Point p2)
+        {
+            return (p1.X == p2.X && p1.Y == p2.Y);
+        }
+        public static bool operator !=(Point p1, Point p2)
+        {
+            return (p1.X != p2.X && p1.Y != p2.Y);
+        }
+    }
 }

@@ -8,10 +8,10 @@ namespace HomeWork6
 {
     class Helicopter
     {
-        public Point[] pointHelicopter;
+        Point[] pointHelicopter;
         int XCave { get; }
         int YCave { get; }
-        public Movement movement;
+        Movement movement;
         public Helicopter(int xCave, int yCave)
         {
             XCave = xCave;
@@ -29,7 +29,7 @@ namespace HomeWork6
             pt.DrawPoint();
             pointHelicopter[2] = pt;
 
-            pt = new Point(3, YCave / 2+1, '▀');
+            pt = new Point(3, YCave / 2 + 1, '▀');
             pt.DrawPoint();
             pointHelicopter[3] = pt;
 
@@ -37,9 +37,12 @@ namespace HomeWork6
             pt.DrawPoint();
             pointHelicopter[4] = pt;
 
-            pt = new Point(1, YCave / 2+1 , '└');
+            pt = new Point(1, YCave / 2 + 1, '└');
             pt.DrawPoint();
             pointHelicopter[5] = pt;
+
+            movement = Movement.DOWN;
+
         }
         public void Move()
         {
@@ -52,10 +55,13 @@ namespace HomeWork6
                 case Movement.UP:
                     nextCord = -1;
                     break;
+                case Movement.FIX:
+                    nextCord = 0;
+                    break;
             }
             if (movement == Movement.DOWN)
             {
-                for (int i = pointHelicopter.Length-1; i >=0; i--)
+                for (int i = pointHelicopter.Length - 1; i >= 0; i--)
                 {
                     pointHelicopter[i].ClearPoint();
                     pointHelicopter[i].Y += nextCord;
@@ -64,19 +70,63 @@ namespace HomeWork6
             }
             else
             {
-                for (int i = 0; i <pointHelicopter.Length; i++)
+                for (int i = 0; i < pointHelicopter.Length; i++)
                 {
                     pointHelicopter[i].ClearPoint();
                     pointHelicopter[i].Y += nextCord;
                     pointHelicopter[i].DrawPoint();
                 }
             }
-            movement = Movement.DOWN;
+            //movement = Movement.DOWN;
         }
-
-        public void ChangeMovement()
+        public void Wheel(ConsoleKey key)
         {
-            movement = Movement.UP;
+            switch (key)
+            {
+                case ConsoleKey.UpArrow:
+                    movement = Movement.DOWN;
+                    break;
+                case ConsoleKey.DownArrow:
+                    movement = Movement.UP;
+                    break;
+                case ConsoleKey.Spacebar:
+                    movement = Movement.FIX;
+                    break;
+            }
+        }
+        public bool Crash(Point[][] stalactite)
+        {
+            bool crash = false;
+            if (pointHelicopter[0].Y == 0) crash = true;
+            else if (pointHelicopter[2].Y == YCave) crash = true;
+            else
+            {
+                for (int i = 0; i < pointHelicopter.Length; i++)
+                {
+                    foreach (var point in stalactite[0])
+                    {
+                        if (pointHelicopter[i] == point)
+                        {
+                            crash = true;
+                            break;
+                        }
+                    }
+                    if (crash) break;
+                    else
+                    {
+                        foreach (var point in stalactite[1])
+                        {
+                            if (pointHelicopter[i] == point)
+                            {
+                                crash = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (crash) break;
+                }
+            }
+            return crash;
         }
     }
 }

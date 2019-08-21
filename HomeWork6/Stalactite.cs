@@ -75,5 +75,9 @@ namespace HomeWork6
                 stalactiteQueue.Dequeue();
             }
         }
+        public Point[][] GetFirstStalactiteCoord()
+        {
+            return stalactiteQueue.Peek();
+        }
     }
 }
