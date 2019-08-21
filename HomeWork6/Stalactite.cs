@@ -11,23 +11,24 @@ namespace HomeWork6
         int XCave { get; }
         int YCave { get; }
         char Ch { get; }
+        ConsoleColor Color { get; set; }
         public Random random;
         Queue<Point[][]> stalactiteQueue;
-        public Stalactite(int xCave, int yCave, char ch)
+        public Stalactite(int xCave, int yCave, char ch,ConsoleColor color)
         {
             XCave = xCave;
             YCave = yCave;
             Ch = ch;
+            Color = color;
             stalactiteQueue = new Queue<Point[][]>();
             random = new Random();
         }
-
         public void NewGeneration()
         {
             int sizeDown = random.Next(0, YCave - 7);
             int sizeUp;
 
-            if (sizeDown < YCave - 13) sizeUp = random.Next(0, YCave - sizeDown - 5);
+            if (sizeDown < YCave - 7) sizeUp = random.Next(0, YCave - sizeDown - 3);
             else sizeUp = 0;
 
             Point[] upPoints = new Point[sizeUp];
@@ -35,12 +36,12 @@ namespace HomeWork6
 
             for (int i = 0; i < sizeUp; i++)
             {
-                upPoints[i] = new Point(XCave, i + 1, Ch);
+                upPoints[i] = new Point(XCave, i + 1, Ch, Color);
                 upPoints[i].DrawPoint();
             }
             for (int i = 0; i < sizeDown; i++)
             {
-                downPoints[i] = new Point(XCave, YCave - i - 1, Ch);
+                downPoints[i] = new Point(XCave, YCave - i - 1, Ch, Color);
                 downPoints[i].DrawPoint();
             }
             Point[][] eqPoints = new Point[2][];
@@ -48,7 +49,7 @@ namespace HomeWork6
             eqPoints[1] = downPoints;
             stalactiteQueue.Enqueue(eqPoints);
         }
-        public void Move()
+        public int Move()
         {
             bool remove = false;
             foreach (var point in stalactiteQueue)
@@ -72,8 +73,11 @@ namespace HomeWork6
             }
             if (remove)
             {
+                int sc = stalactiteQueue.ElementAt(0)[0].Length + stalactiteQueue.ElementAt(0)[1].Length;
                 stalactiteQueue.Dequeue();
+                return sc;
             }
+            else return 0;
         }
         public Point[][] GetFirstStalactiteCoord()
         {

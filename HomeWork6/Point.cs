@@ -10,18 +10,22 @@ namespace HomeWork6
     {
         public int X { get; set; }
         public int Y { get; set; }
-        public char Ch { get; set; }
-        public Point(int x, int y, char ch)
+        char Ch { get; set; }
+        ConsoleColor Color { get; set; }
+        public Point(int x, int y, char ch,ConsoleColor color)
         {
             X = x;
             Y = y;
             Ch = ch;
+            Color = color;
         }
         public void DrawPoint()
         {
             if (X < 0) X = 0;
             Console.SetCursorPosition(X, Y);
+            Console.ForegroundColor = Color;
             Console.Write(Ch);
+            Console.ResetColor();
         }
         public void ClearPoint()
         {

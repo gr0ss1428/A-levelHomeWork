@@ -12,37 +12,36 @@ namespace HomeWork6
         int XCave { get; }
         int YCave { get; }
         Movement movement;
-        public Helicopter(int xCave, int yCave)
+        public Helicopter(int xCave, int yCave, ConsoleColor color)
         {
             XCave = xCave;
             YCave = yCave;
             pointHelicopter = new Point[6];
-            Point pt = new Point(4, YCave / 2, '▄');
+            Point pt = new Point(4, YCave / 2, '▄', color);
             pt.DrawPoint();
             pointHelicopter[0] = pt;
 
-            pt = new Point(3, YCave / 2, '▄');
+            pt = new Point(3, YCave / 2, '▄', color);
             pt.DrawPoint();
             pointHelicopter[1] = pt;
 
-            pt = new Point(4, YCave / 2 + 1, '▀');
+            pt = new Point(4, YCave / 2 + 1, '▀', color);
             pt.DrawPoint();
             pointHelicopter[2] = pt;
 
-            pt = new Point(3, YCave / 2 + 1, '▀');
+            pt = new Point(3, YCave / 2 + 1, '▀', color);
             pt.DrawPoint();
             pointHelicopter[3] = pt;
 
-            pt = new Point(2, YCave / 2 + 1, '─');
+            pt = new Point(2, YCave / 2 + 1, '─', color);
             pt.DrawPoint();
             pointHelicopter[4] = pt;
 
-            pt = new Point(1, YCave / 2 + 1, '└');
+            pt = new Point(1, YCave / 2 + 1, '└', color);
             pt.DrawPoint();
             pointHelicopter[5] = pt;
 
-            movement = Movement.DOWN;
-
+            movement = Movement.FIX;
         }
         public void Move()
         {
@@ -77,7 +76,6 @@ namespace HomeWork6
                     pointHelicopter[i].DrawPoint();
                 }
             }
-            //movement = Movement.DOWN;
         }
         public void Wheel(ConsoleKey key)
         {
