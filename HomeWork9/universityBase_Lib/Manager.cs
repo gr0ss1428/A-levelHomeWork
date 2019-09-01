@@ -41,7 +41,6 @@ namespace universityBase_Lib
         {
             if(groups.ContainsKey(student.Group))
             {
-                
                 bool succes = groups[student.Group].AddStudent(student);
                 if(succes) students.Add(student);
                 return succes;
