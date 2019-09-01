@@ -32,13 +32,11 @@ namespace Ui
             {
                 if (g.GetFree() != 0) comboBox1.Items.Add(g.Number);
             }
-            
         }
         private void Button2_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void TextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
@@ -47,7 +45,6 @@ namespace Ui
                 e.Handled = true;
             }
         }
-
         private void Button1_Click(object sender, EventArgs e)
         {
             string name = String.Empty;
@@ -71,7 +68,6 @@ namespace Ui
                 if (succes) this.Close();
                 else MessageBox.Show("Не удалось добавить студента в группу, возможно в ней нет мест");
             }
-
         }
     }
 }

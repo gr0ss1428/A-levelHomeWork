@@ -19,6 +19,5 @@ namespace universityBase_Lib
         {
             MaxStudentsInGroup = newValue;
         }
-       
     }
 }

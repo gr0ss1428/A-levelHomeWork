@@ -25,7 +25,6 @@ namespace universityBase_Lib
             CurrentLength = 0;
             Number = number;
             Teacher = teacher;
-            
         }
         public bool AddStudent(Student student)
         {

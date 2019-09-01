@@ -26,7 +26,6 @@ namespace universityBase_Lib
         }
         public bool NewGroup(uint number,Teacher teacher)
         {
-           
             if (!groups.ContainsKey(number))
             {
                 groups.Add(number,new Group(number,teacher));
@@ -40,7 +39,6 @@ namespace universityBase_Lib
         }
         public bool NewStudent(Student student)
         {
-            
             if(groups.ContainsKey(student.Group))
             {
                 
@@ -58,13 +56,11 @@ namespace universityBase_Lib
         {
             return groups.Values.ToArray();
         }
-
         public IEnumerable<Teacher> GetTeacherArr(string pos="ВСЕ")
         {
             if (pos =="ВСЕ") return teachers.ToArray();
             else return teachers.ToArray().Where((t) => t.Position == pos);
         }
-
         public IEnumerable<Student> GetStudentsArr(object group)
         {
             if( group=="ВСЕ")  return students.ToArray();

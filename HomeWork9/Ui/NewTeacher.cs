@@ -25,12 +25,10 @@ namespace Ui
             comboBox1.Items.Clear();
             comboBox1.Items.AddRange(new object[] {"Доцент", "Лектор", "Ассистент" });
         }
-
         private void Button1_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void Button2_Click(object sender, EventArgs e)
         {
             string name = String.Empty;
@@ -64,7 +62,6 @@ namespace Ui
                 this.Close();
             }
         }
-
         private void TextBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
