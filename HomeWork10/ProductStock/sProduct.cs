@@ -10,8 +10,8 @@ namespace ProductStock
     {
         public string Name { get; }
         public int Price { get; set; }
-        public int Volume { get; set; }
-        public SProduct(string name,int price,int volume,int validDay, DateTime? dt = null) : base(validDay, dt)
+        public double Volume { get; set; }
+        public SProduct(string name,int price,double volume,int validDay, DateTime? dt = null) : base(validDay, dt)
         {
             Name = name;
             Price = price;

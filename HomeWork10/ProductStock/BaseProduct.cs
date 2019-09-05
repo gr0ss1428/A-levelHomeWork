@@ -17,11 +17,11 @@ namespace ProductStock
         }
         public DateTime ExpiredDate()
         {
-            return _DateReception.AddDays(_ValidDay);
+            return _DateReception.AddDays(_ValidDay+1);
         }
         public bool IsExpired(DateTime currentDate)
         {
-            return currentDate > _DateReception.AddDays(_ValidDay);
+            return currentDate >= _DateReception.AddDays(_ValidDay);
         }
     }
 }
