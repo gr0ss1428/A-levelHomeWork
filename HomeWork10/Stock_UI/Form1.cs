@@ -42,14 +42,14 @@ namespace Stock_UI
         public void UpdateParam()
         {
             labelStockFree.Text = $"{stock.CurrentVolume.ToString("0")}/{stock.MaxVolume.ToString("0")}";
-            listView1.Clear();
-            listView1.Columns.Add("№",50,HorizontalAlignment.Left);
-            listView1.Columns.Add("Название",100, HorizontalAlignment.Left);
-            listView1.Columns.Add("Цена", 100, HorizontalAlignment.Left);
-            listView1.Columns.Add("Объем", 100, HorizontalAlignment.Left);
-            listView1.Columns.Add("Дата поступления", 150, HorizontalAlignment.Left);
-            listView1.Columns.Add("Срок годности", 100, HorizontalAlignment.Left);
-            listView1.Columns.Add("Дата просрочки", 150, HorizontalAlignment.Left);
+            listViewBase.Clear();
+            listViewBase.Columns.Add("№",50,HorizontalAlignment.Left);
+            listViewBase.Columns.Add("Название",100, HorizontalAlignment.Left);
+            listViewBase.Columns.Add("Цена", 100, HorizontalAlignment.Left);
+            listViewBase.Columns.Add("Объем", 100, HorizontalAlignment.Left);
+            listViewBase.Columns.Add("Дата поступления", 150, HorizontalAlignment.Left);
+            listViewBase.Columns.Add("Срок годности", 100, HorizontalAlignment.Left);
+            listViewBase.Columns.Add("Дата просрочки", 150, HorizontalAlignment.Left);
             int count = 1;
             foreach (var item in stock.GetSProductsArr())
             {
@@ -61,7 +61,7 @@ namespace Stock_UI
                 listViewI.SubItems.Add(item._DateReception.ToShortDateString());
                 listViewI.SubItems.Add(item._ValidDay.ToString());
                 listViewI.SubItems.Add(item.ExpiredDate().ToShortDateString());
-                listView1.Items.Add(listViewI);
+                listViewBase.Items.Add(listViewI);
                 count++;
             }
 

@@ -31,7 +31,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listViewBase = new System.Windows.Forms.ListView();
             this.label2 = new System.Windows.Forms.Label();
             this.labelStockFree = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -68,19 +68,19 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Эмуляция даты";
             // 
-            // listView1
+            // listViewBase
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.listViewBase.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(13, 78);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1111, 681);
-            this.listView1.TabIndex = 3;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listViewBase.GridLines = true;
+            this.listViewBase.HideSelection = false;
+            this.listViewBase.Location = new System.Drawing.Point(13, 78);
+            this.listViewBase.Name = "listViewBase";
+            this.listViewBase.Size = new System.Drawing.Size(1111, 681);
+            this.listViewBase.TabIndex = 3;
+            this.listViewBase.UseCompatibleStateImageBehavior = false;
+            this.listViewBase.View = System.Windows.Forms.View.Details;
             // 
             // label2
             // 
@@ -129,7 +129,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.labelStockFree);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.listViewBase);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.button1);
@@ -146,7 +146,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listViewBase;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelStockFree;
         private System.Windows.Forms.Button button2;

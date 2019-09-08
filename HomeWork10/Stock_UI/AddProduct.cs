@@ -33,18 +33,18 @@ namespace Stock_UI
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            string name = textBox1.Text;
+            string name = textBoxName.Text;
             int price = 0;
-            bool parse1 = int.TryParse(textBox2.Text, out price);
+            bool parsePrice = int.TryParse(textBoxPrice.Text, out price);
             double volume = 0;
-            bool parse2 = double.TryParse(textBox3.Text, out volume);
-            int validD = 0;
-            bool parse3 = int.TryParse(textBox4.Text, out validD);
+            bool parseVolume = double.TryParse(textBoxVolume.Text, out volume);
+            int validDay = 0;
+            bool parseValidDay = int.TryParse(textBoxValidDay.Text, out validDay);
             string message = String.Empty;
             if (name == String.Empty) message += "Введите название\n";
-            if (!parse1) message += "Введите цену\n";
-            if (!parse2) message += "Введите вес\n";
-            if (!parse3) message += "Введите срок годности\n";
+            if (!parsePrice) message += "Введите цену\n";
+            if (!parseVolume) message += "Введите вес\n";
+            if (!parseValidDay) message += "Введите срок годности\n";
             if (message != String.Empty)
             {
                 MessageBox.Show(message);
@@ -60,7 +60,7 @@ namespace Stock_UI
                         result = MessageBox.Show($"На складе осталось места {mainStock.CurrentFreeSpace()} тонн, добавить?", "", buttons);
                         if (result == DialogResult.Yes)
                         {
-                            mainStock.AddProduct(new SProduct(name, price, mainStock.CurrentFreeSpace(), validD, dateTimePicker1.Value));
+                            mainStock.AddProduct(new SProduct(name, price, mainStock.CurrentFreeSpace(), validDay, dateTimePickerProductInBase.Value));
                             this.Close();
                         }
                     }
@@ -68,7 +68,7 @@ namespace Stock_UI
                 }
                 else
                 {
-                    mainStock.AddProduct(new SProduct(name, price, volume, validD, dateTimePicker1.Value));
+                    mainStock.AddProduct(new SProduct(name, price, volume, validDay, dateTimePickerProductInBase.Value));
                     this.Close();
                 }
             }
@@ -76,14 +76,14 @@ namespace Stock_UI
         private void TextBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
-            if (!Char.IsDigit(number) && number != 8)
+            if (!Char.IsDigit(number) && number != 8) //цифры + Backspace
             {
                 e.Handled = true;
             }
         }
         private void AddProduct_Load(object sender, EventArgs e)
         {
-            dateTimePicker1.Value = currDt;
+            dateTimePickerProductInBase.Value = currDt;
         }
     }
 }
