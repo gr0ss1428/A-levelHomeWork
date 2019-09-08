@@ -21,7 +21,6 @@ namespace GameLib.Player
         public string Name { get; }
         public int MinWeight { get; }
         public int MaxWeight { get; }
-        //   public Color color { get; }
         public int Wins { get; set; }
         public BasePlayer(string name, int minW, int maxW)
         {
