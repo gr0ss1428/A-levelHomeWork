@@ -101,7 +101,7 @@ namespace GameLib
                 if (min[indexWin, 0] == min[i, 0]) indexWinsPlayer.Add(i);
             }
 
-            string message = "Победили\n";
+            string message = "Победители\n";
             foreach (var index in indexWinsPlayer)//отмечаем победу
             {
                 players[index].Wins++;
