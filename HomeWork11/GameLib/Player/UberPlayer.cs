@@ -24,7 +24,7 @@ namespace GameLib.Player
         }
         public override void NewRun()
         {
-            step = Min - 1;
+            step = MinWeight - 1;
         }
     }
 }

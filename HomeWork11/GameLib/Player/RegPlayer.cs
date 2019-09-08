@@ -20,7 +20,7 @@ namespace GameLib.Player
         }
         public override int NextStep()
         {
-            return rand.Next(Min, Max);
+            return rand.Next(MinWeight, MaxWeight);
         }
         public override void NewRun()
         {

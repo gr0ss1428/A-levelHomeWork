@@ -19,15 +19,15 @@ namespace GameLib.Player
     {
         public abstract string Skills { get;}
         public string Name { get; }
-        public int Min { get; }
-        public int Max { get; }
+        public int MinWeight { get; }
+        public int MaxWeight { get; }
         //   public Color color { get; }
         public int Wins { get; set; }
-        public BasePlayer(string name, int min, int max)
+        public BasePlayer(string name, int minW, int maxW)
         {
             Name = name;
-            Min = min;
-            Max = max + 1;
+            MinWeight = minW;
+            MaxWeight = maxW + 1;
             Wins = 0;
         }
         public abstract int NextStep();
