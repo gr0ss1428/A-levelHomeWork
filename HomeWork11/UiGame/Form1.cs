@@ -11,7 +11,6 @@ using GameLib.Player;
 using GameLib;
 namespace UiGame
 {
-  
     public partial class Form1 : Form,IDisplay
     {
         IServer server;
