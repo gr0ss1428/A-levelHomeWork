@@ -23,7 +23,7 @@ namespace Ui
             InitializeComponent();
             manGroup = m;
             comboBox1.Items.Clear();
-            comboBox1.Items.AddRange(new object[] {"Доцент", "Лектор", "Ассистент" });
+            comboBox1.Items.AddRange(new object[] {"Доцент", "Лектор", "Ассистент" }); // не пиши на обжектах будешь терять время на боксинге анбоксинге и потом еще с приведением типом получишь кучу ошибок указвый строгую типизацию где это возможно.
         }
         private void Button1_Click(object sender, EventArgs e)
         {
@@ -45,14 +45,14 @@ namespace Ui
             if (comboBox1.SelectedItem != null) pos = (string)comboBox1.SelectedItem;
 
             uint length = 0;
-            bool parse2 = false;
+            bool parse2 = false; // не логичное название переменой код не читается я не могу без запуска приложения понять что ты тут парсишь
             if (textBox5.Text != String.Empty) parse2 = uint.TryParse(textBox5.Text, out length);
 
             string messageError = String.Empty;
             if (name == String.Empty) messageError += "Введите имя\n";
             if (surname == String.Empty) messageError += "Введите фамилию\n";
             if (!parse) messageError += "Введите возраст\n";
-            if (comboBox1.SelectedItem == null) messageError += "Выберите должность\n";
+            if (comboBox1.SelectedItem == null) messageError += "Выберите должность\n";  // ВСЕ UI элементы надо называть соответсвенно вот я только на этой строчке догадываюсь что ComboBox1 = это список должностей
             if (!parse2) messageError += "Введите кол-во в группе\n";
 
             if (messageError != String.Empty) MessageBox.Show(messageError);
@@ -65,7 +65,7 @@ namespace Ui
         private void TextBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
-            if (!Char.IsDigit(number) && number != 8)
+            if (!Char.IsDigit(number) && number != 8)  // магические цифры в коде
             {
                 e.Handled = true;
             }
