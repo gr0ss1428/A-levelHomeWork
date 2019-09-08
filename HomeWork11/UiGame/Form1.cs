@@ -25,7 +25,7 @@ namespace UiGame
         }
         public void DisplayInfo(string message)
         {
-            richTextBox1.Invoke(new Action(() => richTextBox1.AppendText(message+"\n")));
+            richTextBoxInfoSters.Invoke(new Action(() => richTextBoxInfoSters.AppendText(message+"\n")));
         }
         public void Victory(string namePlayer)
         {
@@ -37,13 +37,13 @@ namespace UiGame
         }
         public void UpdateVictoryHistory(BasePlayer[] players )
         {
-            listView1.Invoke(new Action(()=>listView1.Items.Clear()));
+            listViewPlayersVictory.Invoke(new Action(()=>listViewPlayersVictory.Items.Clear()));
             for(int i=0;i<players.Length;i++)
             {
                 ListViewItem item = new ListViewItem(players[i].Name);
                 item.SubItems.Add(players[i].Wins.ToString());
                 item.ToolTipText = players[i].Skills;
-                listView1.Invoke(new Action(() => listView1.Items.Add(item)));
+                listViewPlayersVictory.Invoke(new Action(() => listViewPlayersVictory.Items.Add(item)));
             }
         }
         private void Button1_Click(object sender, EventArgs e)
@@ -52,12 +52,12 @@ namespace UiGame
         }
         private void Button3_Click(object sender, EventArgs e)
         {
-            richTextBox1.Clear();
+            richTextBoxInfoSters.Clear();
             Task.Factory.StartNew(() => server.NewTry());
         }
         public void ClearInfo()
         {
-            richTextBox1.Clear();
+            richTextBoxInfoSters.Clear();
         }
         private void Button2_Click(object sender, EventArgs e)
         {
@@ -66,7 +66,7 @@ namespace UiGame
         }
         public void SetPumpkinWeight(int pumpkinWeight)
         {
-            textBox1.Text = pumpkinWeight.ToString();
+            textBoxPumpWeight.Text = pumpkinWeight.ToString();
         }
         private void TextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -79,8 +79,8 @@ namespace UiGame
         private void Button4_Click(object sender, EventArgs e)
         {
             int weight = 0;
-            bool parse = int.TryParse(textBox1.Text, out weight);
-            if(parse)
+            bool parseWeight = int.TryParse(textBoxPumpWeight.Text, out weight);
+            if(parseWeight)
             {
                 if(weight>=40&&weight<=140)
                 {

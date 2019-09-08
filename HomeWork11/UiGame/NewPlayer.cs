@@ -38,10 +38,10 @@ namespace UiGame
             players = new List<TempPlayer>();
             foreach (var skill in Skills.SkillsPlayerStr)
             {
-                comboBox1.Items.Add(skill);
+                comboBoxSkills.Items.Add(skill);
             }
-            comboBox1.SelectedIndex = 0;
-            textBox2.Text = "120";
+            comboBoxSkills.SelectedIndex = 0;
+            textBoxPumpWeight.Text = "120";
         }
         private void Button1_Click(object sender, EventArgs e)
         {
@@ -49,7 +49,7 @@ namespace UiGame
         }
         private void Button3_Click(object sender, EventArgs e)
         {
-            if(textBox1.Text==String.Empty)
+            if(textBoxNamePlayer.Text==String.Empty)
             {
                 MessageBox.Show("Введите имя игрока");
             }
@@ -57,29 +57,29 @@ namespace UiGame
             {
                 if (players.Count < 8)
                 {
-                    players.Add(new TempPlayer(textBox1.Text,comboBox1.SelectedIndex));
-                    listView1.Items.Add(new ListViewItem(new string[] { textBox1.Text, Skills.SkillsPlayerStr[comboBox1.SelectedIndex] }));
+                    players.Add(new TempPlayer(textBoxNamePlayer.Text,comboBoxSkills.SelectedIndex));
+                    listViewPlayersAdd.Items.Add(new ListViewItem(new string[] { textBoxNamePlayer.Text, Skills.SkillsPlayerStr[comboBoxSkills.SelectedIndex] }));
                 }
-                else button3.Enabled = false;
+                else buttonAddPlayer.Enabled = false;
             }
-            textBox1.Text = String.Empty;
-            comboBox1.SelectedIndex = 0;
+            textBoxNamePlayer.Text = String.Empty;
+            comboBoxSkills.SelectedIndex = 0;
         }
         private void Button4_Click(object sender, EventArgs e)
         {
-            button3.Enabled = true;
-            textBox1.Text = String.Empty;
-            comboBox1.SelectedIndex = 0;
+            buttonAddPlayer.Enabled = true;
+            textBoxNamePlayer.Text = String.Empty;
+            comboBoxSkills.SelectedIndex = 0;
             players.Clear();
-            listView1.Items.Clear();
+            listViewPlayersAdd.Items.Clear();
         }
         private void Button2_Click(object sender, EventArgs e)
         {
-            if (textBox2.Text != String.Empty && players.Count >=2)
+            if (textBoxPumpWeight.Text != String.Empty && players.Count >=2)
             {
                 int weight = 0;
-                bool parse = int.TryParse(textBox2.Text, out weight);
-                if (parse && weight >= 40 && weight <= 140)
+                bool parseWeight = int.TryParse(textBoxPumpWeight.Text, out weight);
+                if (parseWeight && weight >= 40 && weight <= 140)
                 {
                     server.ClearPlayer();
                     view.ClearInfo();
@@ -97,14 +97,14 @@ namespace UiGame
             }
             else
             {
-                if(textBox2.Text==String.Empty) MessageBox.Show("Введите вес тыквы");
+                if(textBoxPumpWeight.Text==String.Empty) MessageBox.Show("Введите вес тыквы");
                 if(players.Count<2) MessageBox.Show("Введите больше игроков");
             }
         }
         private void TextBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
-            if (!Char.IsDigit(number) && number != 8)
+            if (!Char.IsDigit(number) && number != 8)//цифры и Backspace
             {
                 e.Handled = true;
             }
@@ -114,7 +114,7 @@ namespace UiGame
             for (int i = 0; i < Skills.SkillsPlayerStr.Count; i++)
             {
                 players.Add(new TempPlayer(Skills.SkillsPlayerStr[i], i));
-                listView1.Items.Add(new ListViewItem(new string[] { Skills.SkillsPlayerStr[i], Skills.SkillsPlayerStr[i] }));
+                listViewPlayersAdd.Items.Add(new ListViewItem(new string[] { Skills.SkillsPlayerStr[i], Skills.SkillsPlayerStr[i] }));
             }
         }
     }

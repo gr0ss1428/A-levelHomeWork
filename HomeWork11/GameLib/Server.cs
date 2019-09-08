@@ -67,6 +67,7 @@ namespace GameLib
         }
         /// <summary>
         /// Очень не красиво считаем, наверное
+        /// В истории каждого игрока ищим минимальную разницу
         /// </summary>
         void WhoVictory()
         {
@@ -86,19 +87,22 @@ namespace GameLib
                     }
                 }
             }
+
             int indexWin = 0;
-            for (int i = 0; i < players.Count - 1; i++)
+            for (int i = 0; i < players.Count - 1; i++)//запоминаем индекс игрока в массиве с самой меньшей разницей
             {
                 if (min[i, 0] < min[i + 1, 0]) indexWin = i;
                 else indexWin = i + 1;
             }
+
             List<int> indexWinsPlayer = new List<int>();
-            for (int i = 0; i < players.Count; i++)
+            for (int i = 0; i < players.Count; i++)//заносим в список игроков с наименьшей разницей
             {
                 if (min[indexWin, 0] == min[i, 0]) indexWinsPlayer.Add(i);
             }
+
             string message = "Победили\n";
-            foreach (var index in indexWinsPlayer)
+            foreach (var index in indexWinsPlayer)//отмечаем победу
             {
                 players[index].Wins++;
                 message += $"Игрок {players[index].Name} с числом {min[index, 1]} \n";
