@@ -12,7 +12,7 @@ namespace GameLib
         IDisplay display;
         List<BasePlayer> players;
         public delegate void DelegatNewRun();
-        public event DelegatNewRun newRun;
+        public event DelegatNewRun NewRun;
         int MaxTry { get; set; }
         int PumpkinWeight { get; set; }
         public Server(IDisplay disp)
@@ -32,7 +32,7 @@ namespace GameLib
             history.Clear();
             if (players.Count() > 0)
             {
-                newRun?.Invoke();
+                NewRun?.Invoke();
                 BeginGame();
             }
         }
@@ -115,27 +115,27 @@ namespace GameLib
             {
                 case Skills.SkillsPlayerEnum.REGULARPLAYER:
                     BasePlayer playerReg = new RegPlayer(name, 40, 140);
-                    this.newRun += playerReg.NewRun;
+                    this.NewRun += playerReg.NewRun;
                     players.Add(playerReg);
                     break;
                 case Skills.SkillsPlayerEnum.NOTEPADPLAYER:
                     BasePlayer playerNote = new NotepadPlayer(history, name, 40, 140);
-                    this.newRun += playerNote.NewRun;
+                    this.NewRun += playerNote.NewRun;
                     players.Add(playerNote);
                     break;
                 case Skills.SkillsPlayerEnum.UBERPLAYER:
                     BasePlayer playerUber = new UberPlayer(name, 40, 140);
-                    this.newRun += playerUber.NewRun;
+                    this.NewRun += playerUber.NewRun;
                     players.Add(playerUber);
                     break;
                 case Skills.SkillsPlayerEnum.CHEATER:
                     BasePlayer playerCheat = new CheaterPlayer(history, name, 40, 140);
-                    this.newRun += playerCheat.NewRun;
+                    this.NewRun += playerCheat.NewRun;
                     players.Add(playerCheat);
                     break;
                 case Skills.SkillsPlayerEnum.UBERCHEATER:
                     BasePlayer playerUCheat = new UberCheatPlayer(history, name, 40, 140);
-                    this.newRun += playerUCheat.NewRun;
+                    this.NewRun += playerUCheat.NewRun;
                     players.Add(playerUCheat);
                     break;
             }
