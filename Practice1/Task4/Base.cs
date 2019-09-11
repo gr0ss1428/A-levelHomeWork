@@ -67,9 +67,19 @@ namespace Task4
             }
             else lstProducts.Add(product);
         }
-
+        /*
+         * Типа удаляем не столько объект сколько количество и если удаялемое количество
+         * больше имеющегося удаляем объект
+         * 
+         * */
         public bool Remove(Product product)
         {
+            if (lstProducts.Contains(product))
+            {
+                lstProducts[lstProducts.IndexOf(product)].Count -= product.Count;
+                if(lstProducts[lstProducts.IndexOf(product)].Count <= 0) return lstProducts.Remove(product);
+                else return true;
+            }
             return lstProducts.Remove(product);
         }
 

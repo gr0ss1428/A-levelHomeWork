@@ -33,6 +33,8 @@ namespace Task4
             mainBase.SortFurnitureFirst();
             mainBase.Add(new Furniture("IKEA", "Stool", 200, 50));
             mainBase.PrintAll();
+            mainBase.Remove(new Furniture("IKEA", "Stool", 50, 50));
+            mainBase.PrintAll();
 
             Console.ReadKey();
             
