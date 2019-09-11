@@ -84,18 +84,18 @@ namespace Task5
             return bouquet;
         }
 
-        public static Bouquet operator +(Bouquet bouquet, Bouquet bouquet2)
+        public static Bouquet operator +(Bouquet bouquet1, Bouquet bouquet2)
         {
             foreach (var items in bouquet2.lstFlower)
-                bouquet.Add(items);
-            return bouquet;
+                bouquet1.Add(items);
+            return bouquet1;
         }
 
-        public static Bouquet operator -(Bouquet bouquet, Bouquet bouquet2)
+        public static Bouquet operator -(Bouquet bouquet1, Bouquet bouquet2)
         {
             foreach (var items in bouquet2.lstFlower)
-                bouquet.Remove(items);
-            return bouquet;
+                bouquet1.Remove(items);
+            return bouquet1;
         }
 
         public void GetInfo()
