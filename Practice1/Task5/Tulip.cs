@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Task5
+﻿namespace Task5
 {
-    class Tulip:Flower
+    internal class Tulip : Flower
     {
         private string typeFlower;
 
@@ -18,7 +12,7 @@ namespace Task5
             }
         }
 
-        public Tulip(string type, double price, int count=1) : base(price, count)
+        public Tulip(string type, double price, int count = 1) : base(price, count)
         {
             typeFlower = type;
         }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Task5
+﻿namespace Task5
 {
     public abstract class Flower
     {
@@ -12,7 +6,7 @@ namespace Task5
         public double Price { get; set; }
         public int Count { get; set; }
 
-        public Flower(double price,int count )
+        public Flower(double price, int count)
         {
             Price = price;
             Count = count;
@@ -35,7 +29,7 @@ namespace Task5
 
         public string GetInfo()
         {
-            return $"Type: {Type}, Count: {Count}, Price:{Count*Price}\n";
+            return $"Type: {Type}, Count: {Count}, Price:{Price}, PriceAll:{Count * Price}\n";
         }
     }
 }

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Task5
 {
@@ -10,13 +8,17 @@ namespace Task5
     {
         int CountFlower { get; }
         double Price { get; }
+
         void Add(Flower flower);
+
         bool Remove(Flower flower);
+
         void GetInfo();
     }
+
     public class Bouquet : IBouquet
     {
-        List<Flower> lstFlower;
+        private List<Flower> lstFlower;
         public IDisplay display;
 
         public int CountFlower
@@ -40,10 +42,12 @@ namespace Task5
             this.display = display;
             lstFlower = new List<Flower>();
         }
+
         /*
          *Так как я это делал в задаче 4 думаю такое адд и удаление тут более актуально
          *
          */
+
         public void Add(Flower flower)
         {
             if (lstFlower.Contains(flower))
@@ -63,14 +67,43 @@ namespace Task5
             }
             else return lstFlower.Remove(flower);
         }
-        
+
+        /*
+         * Может и не стоило это делать, но кажется перегрузка +- с цветами тут в самый раз
+         * */
+
+        public static Bouquet operator +(Bouquet bouquet, Flower flower)
+        {
+            bouquet.Add(flower);
+            return bouquet;
+        }
+
+        public static Bouquet operator -(Bouquet bouquet, Flower flower)
+        {
+            bouquet.Remove(flower);
+            return bouquet;
+        }
+
+        public static Bouquet operator +(Bouquet bouquet, Bouquet bouquet2)
+        {
+            foreach (var items in bouquet2.lstFlower)
+                bouquet.Add(items);
+            return bouquet;
+        }
+
+        public static Bouquet operator -(Bouquet bouquet, Bouquet bouquet2)
+        {
+            foreach (var items in bouquet2.lstFlower)
+                bouquet.Remove(items);
+            return bouquet;
+        }
+
         public void GetInfo()
         {
-            
             StringBuilder message = new StringBuilder(string.Empty);
-            foreach(var flow in lstFlower)
+            foreach (var flow in lstFlower)
             {
-                message.Append( flow.GetInfo());
+                message.Append(flow.GetInfo());
             }
             message.Append($"\tPrice bouquet:{Price}");
             display.PrintInfo(message.ToString());
