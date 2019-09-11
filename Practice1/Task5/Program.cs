@@ -29,6 +29,14 @@ namespace Task5
             bouquet = bouquet + fl;
 
             bouquet.GetInfo();
+
+            Bouquet bouquet2 = new Bouquet(new Display());
+            bouquet2.Add(new Rose("Rose", 666,1));
+            bouquet2.Add(new Tulip("Tulip", 666,1));
+
+            bouquet += bouquet2;
+
+            bouquet.GetInfo();
             Console.ReadKey();
         }
     }
