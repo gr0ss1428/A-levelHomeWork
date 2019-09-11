@@ -12,14 +12,13 @@ namespace Task4
         public double Price { get; set; }
         public int Count { get; set; }
 
+        public abstract string GetInfo();
+
         public Product(string name, int count, double price)
         {
             Name = name;
             Price = price;
             Count = count;
         }
-
-        public abstract string GetInfo();
-
     }
 }
