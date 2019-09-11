@@ -45,11 +45,13 @@ namespace Task3
             triangle.PrintDescriptionFigure();
             Console.ReadKey();
 
-            var ellipse = new Ellipse(display, new Point(0, 0), 10, 5);
+            var ellipse = new Ellipse(display, new Point(0, 0), 10,5);
             ellipse.PrintDescriptionFigure();
             ellipse++;
             ellipse.PrintDescriptionFigure();
             Console.ReadKey();
+
+           
         }
     }
 }

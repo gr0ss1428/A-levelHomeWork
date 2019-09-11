@@ -31,14 +31,20 @@ namespace Task3
         {
             get
             {
-                return "Ellipse";
+                return (Radius1==Radius2)?"Circle":"Ellipse";
             }
         }
-      
-        public Ellipse(IDisplay display, Point centrePoint, double radius1, double radius2) : base(display,new Point[] { centrePoint })
+      /// <summary>
+      /// Круг и элипс
+      /// </summary>
+      /// <param name="display">Интерфейс вывода на экран</param>
+      /// <param name="centrePoint">Координаты центра</param>
+      /// <param name="radius1">Радиус</param>
+      /// <param name="radius2">Радиус 2 если у нас эллипс</param>
+        public Ellipse(IDisplay display, Point centrePoint, double radius1, double? radius2=null) : base(display,new Point[] { centrePoint })
         {
             Radius1 = radius1;
-            Radius2 = radius2;
+            Radius2 = radius2??Radius1;
         }
 
         public static Ellipse operator ++(Ellipse e)
@@ -48,7 +54,11 @@ namespace Task3
 
         public static Ellipse operator --(Ellipse e)
         {
-            return new Ellipse(e.display, e.Points[0], --e.Radius1, --e.Radius2);
+            e.Radius1--;
+            e.Radius2--;
+            if (e.Radius1 < 0) e.Radius1 = 0;
+            if (e.Radius2 < 0) e.Radius2 = 0;
+            return new Ellipse(e.display, e.Points[0], e.Radius1,e.Radius2);
         }
 
         public override void PrintDescriptionFigure()
@@ -57,8 +67,12 @@ namespace Task3
             message += $"Type: {this.TypeFigure}\n";
             message += $"Area: {this.Area.ToString("0.##")}\n";
             message += $"Perimetr: {this.Perimetr.ToString("0.##")}\n";
-            message += $"Radius1: {Radius1.ToString("0.##")}\n";
-            message += $"Radius2: {Radius2.ToString("0.##")}\n";
+            if (Radius1 != Radius2)
+            {
+                message += $"Radius1: {Radius1.ToString("0.##")}\n";
+                message += $"Radius2: {Radius2.ToString("0.##")}\n";
+            }
+            else message += $"Radius: {Radius1.ToString("0.##")}\n";
             message += $"Centre Point: {Points[0].ToString()}\n";
             display.Print(message);
         }

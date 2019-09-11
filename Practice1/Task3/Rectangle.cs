@@ -26,7 +26,7 @@ namespace Task3
             }
         }
 
-        public Rectangle(IDisplay display, Point[] point) : base(display,point)
+        public Rectangle(IDisplay display, Point[] point) : base(display, point)
         {
         }
 
