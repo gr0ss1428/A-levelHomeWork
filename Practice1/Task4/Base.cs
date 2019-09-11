@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Task4
 {
-    interface IBase
+    public interface IBase
     {
         int CountAllPosition { get; }
         int CountAllFurniture { get; }
