@@ -13,6 +13,7 @@ namespace ConsoleFizzBazz2
             Control control = Control.GetControl();
             bool exit = false;
             int select = 0;
+            Console.ForegroundColor = ConsoleColor.White;
             do
             {
                 select = Menu(new List<string>() { "New calculate.", "Exit." });
