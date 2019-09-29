@@ -47,6 +47,7 @@ namespace ConsoleFizzBazz2
         public void StartFizzBuzz(int end, FizzBuzzAlg.FizzBuzz fizzBuzz)
         {
             sbFizzBuzz = new StringBuilder();
+            GC.Collect();
             stopwatch.Reset();
             sbFizzBuzz = fizzBuzz.FizzBuzzStart(end, stopwatch);
         }

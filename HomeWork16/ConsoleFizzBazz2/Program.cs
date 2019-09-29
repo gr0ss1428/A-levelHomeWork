@@ -45,7 +45,8 @@ namespace ConsoleFizzBazz2
                 Console.Clear();
                 StartFB(control, "No threads", end, new FizzBuzz(), true);
                 StartFB(control, "Async", end, new FizzBuzzAsync(threads), true);
-                StartFB(control, "Threads", end, new FizzBuzzThread(threads), false);
+                StartFB(control, "Threads", end, new FizzBuzzThread(threads), true);
+                StartFB(control, "Parallel", end, new FizzBuzzParallel(), false);
 
                 Console.SetCursorPosition(0, Console.CursorTop + 2);
                 Console.WriteLine("Press enter(new run)/eny key(exit)");

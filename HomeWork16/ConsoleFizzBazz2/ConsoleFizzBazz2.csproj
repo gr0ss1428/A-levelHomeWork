@@ -46,6 +46,7 @@
     <Compile Include="Control.cs" />
     <Compile Include="FizzBuzzAlg\FizzBuzz.cs" />
     <Compile Include="FizzBuzzAlg\FizzBuzzAsync.cs" />
+    <Compile Include="FizzBuzzAlg\FizzBuzzParallel.cs" />
     <Compile Include="FizzBuzzAlg\FizzBuzzThread.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
