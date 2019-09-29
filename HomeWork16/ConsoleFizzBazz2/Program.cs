@@ -40,9 +40,9 @@ namespace ConsoleFizzBazz2
             do
             {
                 Console.Clear();
-                end = IntParse("Enter end value:");
+                end = IntParse("Enter end value:",100000000);
                 Console.Clear();
-                threads = IntParse("Enter threads count:");
+                threads = IntParse("Enter threads count:",5);
 
                 Console.Clear();
                 timeSpanNoThreads = StartFB(control, "No threads", end, new FizzBuzz(), true);
@@ -92,17 +92,29 @@ namespace ConsoleFizzBazz2
             return selectType;
         }
 
-        static int IntParse(string label)
+        static int IntParse(string label,int def)
         {
             bool intParse = false;
             int clear = 0;
             int value;
             do
             {
+                Console.WriteLine($"Default value:{def}, press enter(default)");
                 ClearLine(clear);
                 Console.Write(label);
                 clear = 1;
-                intParse = int.TryParse(Console.ReadLine(), out value);
+
+                string strValue = Console.ReadLine();
+                if (strValue != string.Empty)
+                {
+                    intParse = int.TryParse(strValue, out value);
+                }
+                else
+                {
+                    value = def;
+                    intParse = true;
+                }
+
             } while (!intParse);
 
             return value;
