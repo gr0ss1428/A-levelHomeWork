@@ -34,20 +34,18 @@ namespace ConsoleFizzBazz2
             bool exit = false;
             int end;
             int threads;
-            TimeSpan timeSpanNoThreads;
-            TimeSpan timeSpanAsync;
-            TimeSpan timeSpanThreads;
+
             do
             {
                 Console.Clear();
-                end = IntParse("Enter end value:",100000000);
+                end = IntParse("Enter end value:", 100000000);
                 Console.Clear();
-                threads = IntParse("Enter threads count:",5);
+                threads = IntParse("Enter threads count:", 5);
 
                 Console.Clear();
-                timeSpanNoThreads = StartFB(control, "No threads", end, new FizzBuzz(), true);
-                timeSpanAsync = StartFB(control, "Async", end, new FizzBuzzAsync(threads), true);
-                timeSpanThreads = StartFB(control, "Threads", end, new FizzBuzzThread(threads), false);
+                StartFB(control, "No threads", end, new FizzBuzz(), true);
+                StartFB(control, "Async", end, new FizzBuzzAsync(threads), true);
+                StartFB(control, "Threads", end, new FizzBuzzThread(threads), false);
 
                 Console.SetCursorPosition(0, Console.CursorTop + 2);
                 Console.WriteLine("Press enter(new run)/eny key(exit)");
@@ -58,14 +56,12 @@ namespace ConsoleFizzBazz2
             } while (!exit);
         }
 
-        static TimeSpan StartFB(Control control, string label, int end, FizzBuzz fizzBuzz, bool printLine)
+        static void StartFB(Control control, string label, int end, FizzBuzz fizzBuzz, bool printLine)
         {
             Console.WriteLine(label);
             control.StartFizzBuzz(end, fizzBuzz);
             Console.WriteLine($"\r{control.Time.ToString()}");
             if (printLine) Console.WriteLine("-----------------------------");
-
-            return control.Time;
         }
 
         static int Menu(List<string> menu)
@@ -92,7 +88,7 @@ namespace ConsoleFizzBazz2
             return selectType;
         }
 
-        static int IntParse(string label,int def)
+        static int IntParse(string label, int def)
         {
             bool intParse = false;
             int clear = 0;
