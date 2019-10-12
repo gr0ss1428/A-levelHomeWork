@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Observer", "Observer\Observer.csproj", "{2640A97D-BBAB-4F10-8966-091984EC6D1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelegatFigure", "DelegatFigure\DelegatFigure.csproj", "{51D4CC84-21D8-44B8-B0BC-FE1EF8F5112A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2640A97D-BBAB-4F10-8966-091984EC6D1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2640A97D-BBAB-4F10-8966-091984EC6D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2640A97D-BBAB-4F10-8966-091984EC6D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2640A97D-BBAB-4F10-8966-091984EC6D1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51D4CC84-21D8-44B8-B0BC-FE1EF8F5112A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51D4CC84-21D8-44B8-B0BC-FE1EF8F5112A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51D4CC84-21D8-44B8-B0BC-FE1EF8F5112A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51D4CC84-21D8-44B8-B0BC-FE1EF8F5112A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9E41306D-4FC4-40E7-85E8-9B23E1A9D65F}
+	EndGlobalSection
+EndGlobal
