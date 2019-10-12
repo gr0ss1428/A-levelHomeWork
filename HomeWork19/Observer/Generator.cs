@@ -41,7 +41,6 @@ namespace Observer
                         }
                         NewValue?.Invoke(random.Next(0, 500));
                         Thread.Sleep(10);
-
                     }
                 });
                 IsGenerate = true;

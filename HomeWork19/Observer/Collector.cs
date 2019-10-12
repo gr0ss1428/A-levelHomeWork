@@ -7,7 +7,12 @@ using System.Threading.Tasks;
 
 namespace Observer
 {
-    class Collector
+    interface IObserver
+    {
+        void Subscribe();
+        void Unsubscribe();
+    }
+    class Collector: IObserver
     {
         private int maxCollect;
         public int MaxCollect
