@@ -23,6 +23,9 @@ namespace Observer
             collector1.Subscribe();
           
             Console.ReadKey();
+
+            collector1.Subscribe();
+            Console.ReadKey();
         }
     }
 }
