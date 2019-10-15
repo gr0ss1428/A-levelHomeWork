@@ -149,6 +149,7 @@ namespace HomeWork20
             lstProvider.Add(new Provider() { Name = "SecondCo", Amount = 300, Date = DateTime.Now.AddDays(3) });
             lstProvider.Add(new Provider() { Name = "ThreeCo" });
             lstProvider.Add(new Provider() { Name = "FourCo" });
+
             var resultDictionary = (from item in lstProvider
                                     group item by item.Name).ToDictionary(k => k.Key, v => new
                                     {
