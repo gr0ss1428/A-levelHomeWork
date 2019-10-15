@@ -150,7 +150,7 @@ namespace HomeWork20
             lstProvider.Add(new Provider() { Name = "ThreeCo" });
             lstProvider.Add(new Provider() { Name = "FourCo" });
 
-            var resultDictionary = (from item in lstProvider
+            var resultDictionary = (from item in lstProvider.Where(i => i.Amount != 0)
                                     group item by item.Name).ToDictionary(k => k.Key, v => new
                                     {
                                         Sum = lstProvider.Where(i => i.Name == v.Key).Sum(s => s.Amount),
@@ -160,12 +160,9 @@ namespace HomeWork20
 
             foreach (var key in resultDictionary.Keys)
             {
-                if (resultDictionary[key].Sum != 0)
-                {
-                    Console.WriteLine(key);
-                    Console.Write($" Sum= {resultDictionary[key].Sum}, First supply:{resultDictionary[key].First}, Last supply:{resultDictionary[key].Last}");
-                    Console.WriteLine();
-                }
+                Console.WriteLine(key);
+                Console.Write($" Sum= {resultDictionary[key].Sum}, First supply:{resultDictionary[key].First}, Last supply:{resultDictionary[key].Last}");
+                Console.WriteLine();
             }
         }
 
