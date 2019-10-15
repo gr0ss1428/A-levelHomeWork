@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace HomeWork20
 {
+    class Provider
+    {
+        public string Name { get; set; }
+        public int Amount { get; set; }
+        public DateTime Date { get; set; }
+    }
     class Program
     {
         static void Main(string[] args)
@@ -13,8 +19,11 @@ namespace HomeWork20
             First();
 
             Second();
+
+            Three();
             Console.ReadKey();
         }
+
         /*
         First, FirstOrDefault, last, LastOrDefault, Single
         Набор целых чисел (List). Показать первый положительный и последний отрицательный
@@ -105,14 +114,58 @@ namespace HomeWork20
             PrintList(lstNumbers1);
             PrintList(lstNumbers2);
             Console.WriteLine(number);
-            
+
             List<int> lstResult = new List<int>();
             lstResult.AddRange(lstNumbers1.Where(i => i > number).DefaultIfEmpty(-100));
-            //разделитель
+            //разделитель между коллекциями
             lstResult.Add(1000);
             lstResult.AddRange(lstNumbers2.Where(i => i < number).DefaultIfEmpty(-100));
             PrintList(lstResult);
+            Console.WriteLine();
+        }
 
+        /*
+        GroupBy, ToDictionary
+        Есть поставщики, и есть сумма за их поставки. Каждая поставка имеет дату.
+        string Name double Amount DateTime Date
+        сделать группированную коллекцию типа
+        Name (key)
+        value
+         Общая сумма поставок
+         Дата первой поставки
+         Дата последней поставки
+        Не показывать "пустых" поставщиков
+        Не показывать "пустых" поставщиков на этапе работе с исходной коллекцией
+        */
+        static void Three()
+        {
+            Console.WriteLine("Three");
+            List<Provider> lstProvider = new List<Provider>();
+            lstProvider.Add(new Provider() { Name = "FirstCo", Amount = 100, Date = DateTime.Now.AddDays(1) });
+            lstProvider.Add(new Provider() { Name = "FirstCo", Amount = 200, Date = DateTime.Now.AddDays(2) });
+            lstProvider.Add(new Provider() { Name = "FirstCo", Amount = 300, Date = DateTime.Now.AddDays(3) });
+            lstProvider.Add(new Provider() { Name = "SecondCo", Amount = 300, Date = DateTime.Now.AddDays(1) });
+            lstProvider.Add(new Provider() { Name = "SecondCo", Amount = 300, Date = DateTime.Now.AddDays(3) });
+            lstProvider.Add(new Provider() { Name = "SecondCo", Amount = 300, Date = DateTime.Now.AddDays(3) });
+            lstProvider.Add(new Provider() { Name = "ThreeCo" });
+            lstProvider.Add(new Provider() { Name = "FourCo" });
+            var resultDictionary = (from item in lstProvider
+                                    group item by item.Name).ToDictionary(k => k.Key, v => new
+                                    {
+                                        Sum = lstProvider.Where(i => i.Name == v.Key).Sum(s => s.Amount),
+                                        First = lstProvider.Where(i => i.Name == v.Key).Min(d => d.Date),
+                                        Last = lstProvider.Where(i => i.Name == v.Key).Max(d => d.Date)
+                                    });
+
+            foreach (var key in resultDictionary.Keys)
+            {
+                if (resultDictionary[key].Sum != 0)
+                {
+                    Console.WriteLine(key);
+                    Console.Write($" Sum= {resultDictionary[key].Sum}, First supply:{resultDictionary[key].First}, Last supply:{resultDictionary[key].Last}");
+                    Console.WriteLine();
+                }
+            }
         }
 
         static List<int> FillList(int count, int min, int max)
