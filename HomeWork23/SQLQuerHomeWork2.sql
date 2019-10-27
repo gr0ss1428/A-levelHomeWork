@@ -1,21 +1,21 @@
 USE OfficeStruct
 
--- Отсортированный в обратном порядке список отделов с количеством сотрудников
+-- РћС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ РІ РѕР±СЂР°С‚РЅРѕРј РїРѕСЂСЏРґРєРµ СЃРїРёСЃРѕРє РѕС‚РґРµР»РѕРІ СЃ РєРѕР»РёС‡РµСЃС‚РІРѕРј СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ
 SELECT d.Name,(SELECT COUNT(e.ID) FROM Employee e WHERE e.DepartmentId=d.ID) AS Workers FROM dbo.Department d  ORDER BY d.Name DESC;
 
---Вывести список сотрудников, получающих заработную плату большую чем у непосредственного руководителя
+--Р’С‹РІРµСЃС‚Рё СЃРїРёСЃРѕРє СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ, РїРѕР»СѓС‡Р°СЋС‰РёС… Р·Р°СЂР°Р±РѕС‚РЅСѓСЋ РїР»Р°С‚Сѓ Р±РѕР»СЊС€СѓСЋ С‡РµРј Сѓ РЅРµРїРѕСЃСЂРµРґСЃС‚РІРµРЅРЅРѕРіРѕ СЂСѓРєРѕРІРѕРґРёС‚РµР»СЏ
 SELECT e.Name, e.ChiefId,e.Salary FROM Employee e WHERE  e.Salary>(SELECT e1.Salary FROM Employee e1 WHERE e1.ID= e.ChiefId) ORDER BY e.ChiefId;
 
---Вывести список отделов, количество сотрудников в которых не превышает 3 человек
+--Р’С‹РІРµСЃС‚Рё СЃРїРёСЃРѕРє РѕС‚РґРµР»РѕРІ, РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ РІ РєРѕС‚РѕСЂС‹С… РЅРµ РїСЂРµРІС‹С€Р°РµС‚ 3 С‡РµР»РѕРІРµРє
 SELECT d.Name, COUNT(e.Id) AS Worker FROM dbo.Department d
 LEFT JOIN  Employee e ON d.ID = e.DepartmentId GROUP BY d.Name, d.ID HAVING COUNT(e.ID)<=3 ORDER BY Worker;
 
---Вывести список сотрудников, получающих максимальную заработную плату в своем отделе
+--Р’С‹РІРµСЃС‚Рё СЃРїРёСЃРѕРє СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ, РїРѕР»СѓС‡Р°СЋС‰РёС… РјР°РєСЃРёРјР°Р»СЊРЅСѓСЋ Р·Р°СЂР°Р±РѕС‚РЅСѓСЋ РїР»Р°С‚Сѓ РІ СЃРІРѕРµРј РѕС‚РґРµР»Рµ
 SELECT e.Name, e.DepartmentId,e.Salary FROM Employee e
 WHERE e.Salary=(SELECT MAX(e1.Salary) FROM Employee e1 WHERE e1.DepartmentId= e.DepartmentId) GROUP BY e.Name, e.DepartmentId, e.Salary ORDER BY e.Name;
 
---Найти список отделов с максимальной суммарной зарплатой сотрудников
-    --Просто списов с средней зарплатой
+--РќР°Р№С‚Рё СЃРїРёСЃРѕРє РѕС‚РґРµР»РѕРІ СЃ РјР°РєСЃРёРјР°Р»СЊРЅРѕР№ СЃСѓРјРјР°СЂРЅРѕР№ Р·Р°СЂРїР»Р°С‚РѕР№ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ
+    --РџСЂРѕСЃС‚Рѕ СЃРїРёСЃРѕРІ СЃ СЃСЂРµРґРЅРµР№ Р·Р°СЂРїР»Р°С‚РѕР№
 SELECT d.Name ,(SELECT AVG(e1.Salary) FROM Employee e1 WHERE e1.DepartmentId=e.DepartmentId) AS asdsd FROM Employee e 
 JOIN Department d ON d.ID=e.DepartmentId
 GROUP BY d.Name, e.DepartmentId;
@@ -39,7 +39,7 @@ JOIN (
 	GROUP BY d.Name, e.DepartmentId)X
 )Y ON X.Average=Y.max_Average;
 
---SQL-запрос, чтобы найти вторую самую высокую зарплату работника
+--SQL-Р·Р°РїСЂРѕСЃ, С‡С‚РѕР±С‹ РЅР°Р№С‚Рё РІС‚РѕСЂСѓСЋ СЃР°РјСѓСЋ РІС‹СЃРѕРєСѓСЋ Р·Р°СЂРїР»Р°С‚Сѓ СЂР°Р±РѕС‚РЅРёРєР°
 SELECT e.Name, MAX(e.Salary) AS Max_Salary FROM Employee e GROUP BY e.Name  ORDER BY  Max_Salary DESC OFFSET 1 ROWS FETCH NEXT 1 ROWS ONLY; 
 
 SELECT e.Name, e.Salary FROM Employee e
