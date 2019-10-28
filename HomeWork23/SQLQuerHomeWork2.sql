@@ -16,9 +16,10 @@ WHERE e.Salary=(SELECT MAX(e1.Salary) FROM Employee e1 WHERE e1.DepartmentId= e.
 
 --Найти список отделов с максимальной суммарной зарплатой сотрудников
     --Просто списов с средней зарплатой
-SELECT d.Name ,(SELECT SUM(e1.Salary) FROM Employee e1 WHERE e1.DepartmentId=e.DepartmentId) AS asdsd FROM Employee e 
+SELECT d.Name ,(SELECT SUM(e1.Salary) FROM Employee e1 WHERE e1.DepartmentId=e.DepartmentId) AS Sum_salary FROM Employee e 
 JOIN Department d ON d.ID=e.DepartmentId
-GROUP BY d.Name, e.DepartmentId;
+GROUP BY d.Name, e.DepartmentId
+ORDER BY Sum_salary DESC;
 
 SELECT TOP 1  d.Name , SUM(e1.Salary) AS Max_average FROM Employee e 
 JOIN Department d ON d.ID=e.DepartmentId
@@ -40,13 +41,14 @@ JOIN (
 )Y ON X.SUM_Salary=Y.max_Sum_Salary;
 
 --SQL-запрос, чтобы найти вторую самую высокую зарплату работника
-SELECT e.Name, MAX(e.Salary) AS Max_Salary FROM Employee e GROUP BY e.Name  ORDER BY  Max_Salary DESC OFFSET 1 ROWS FETCH NEXT 1 ROWS ONLY; 
+INSERT INTO dbo.Employee(Name,DepartmentId,ChiefId,Salary) VALUES('Rita',3,2,1486.66);
+SELECT e.Name, e.Salary  FROM Employee e GROUP BY e.Name,e.Salary  ORDER BY  e.Salary  DESC OFFSET 1 ROWS FETCH NEXT 1 ROWS ONLY; 
 
 SELECT e.Name, e.Salary FROM Employee e
 WHERE 2= (SELECT COUNT(DISTINCT(e1.Salary)) FROM Employee e1 WHERE e.Salary<=e1.Salary) ORDER BY e.Name;
 
 --Вывести список сотрудников, не имеющих назначенного руководителя, работающего в том-же отделе
-SELECT e.Name, e.DepartmentId, e.ChiefId FROM dbo.Employee e
-JOIN Employee e1 ON e.DepartmentId!=e1.DepartmentId AND e.ChiefId=e1.ID 
+SELECT  e.ID, e.Name, e.DepartmentId, e.ChiefId FROM dbo.Employee e
+JOIN dbo.Employee e1 ON e.DepartmentId!=e1.DepartmentId AND e.ChiefId=e1.ID OR e.ChiefId IS NULL GROUP BY e.ID,e.Name,e.DepartmentId,e.ChiefId 
  
 
