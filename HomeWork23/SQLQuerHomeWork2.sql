@@ -21,24 +21,10 @@ JOIN Department d ON d.ID=e.DepartmentId
 GROUP BY d.Name, e.DepartmentId
 ORDER BY Sum_salary DESC;
 
-SELECT TOP 1  d.Name , SUM(e1.Salary) AS Max_average FROM Employee e 
+SELECT d.Name,SUM(e.Salary) AS Sum_salary FROM Employee e 
 JOIN Department d ON d.ID=e.DepartmentId
-JOIN Employee e1 ON e.DepartmentId = e1.DepartmentId
-GROUP BY d.Name, e.DepartmentId ORDER BY Max_average DESC;
-
-SELECT X.Name,X.SUM_Salary  FROM( 
-	SELECT d.Name, SUM(e1.Salary) AS SUM_Salary FROM Employee e 
-	JOIN Department d ON d.ID=e.DepartmentId
-	JOIN Employee e1 ON e.DepartmentId = e1.DepartmentId
-	GROUP BY d.Name, e.DepartmentId
-)X 
-JOIN (
-	SELECT MAX(X.SUM_Salary) AS max_Sum_Salary FROM( 
-	SELECT d.Name, SUM(e1.Salary) AS SUM_Salary FROM Employee e 
-	JOIN Department d ON d.ID=e.DepartmentId
-	JOIN Employee e1 ON e.DepartmentId = e1.DepartmentId
-	GROUP BY d.Name, e.DepartmentId)X
-)Y ON X.SUM_Salary=Y.max_Sum_Salary;
+GROUP BY e.DepartmentId,d.Name
+HAVING SUM(e.Salary)=(SELECT TOP 1 SUM(e1.Salary) AS ssum FROM Employee e1 GROUP BY e1.DepartmentId ORDER BY ssum DESC )
 
 --SQL-запрос, чтобы найти вторую самую высокую зарплату работника
 INSERT INTO dbo.Employee(Name,DepartmentId,ChiefId,Salary) VALUES('Rita',3,2,1486.66);
