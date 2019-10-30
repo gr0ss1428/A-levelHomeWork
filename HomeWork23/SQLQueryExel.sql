@@ -22,11 +22,11 @@ SET dbo.Orders$.[Postal Code] = 92029
 WHERE dbo.Orders$.City='San Diego';
 
 CREATE TABLE [Address] (
-	PostalCode INT PRIMARY KEY NOT NULL
-   ,Country NVARCHAR(20) NOT NULL
-   ,City NVARCHAR(20) NOT NULL
-   ,[State] NVARCHAR(20) NOT NULL
-   ,[Region] NVARCHAR(20) NOT NULL
+	PostalCode INT PRIMARY KEY NOT NULL,
+    Country NVARCHAR(20) NOT NULL,
+    City NVARCHAR(20) NOT NULL,
+    [State] NVARCHAR(20) NOT NULL,
+    [Region] NVARCHAR(20) NOT NULL
 );
 -- Заполняем
 INSERT INTO dbo.Address
