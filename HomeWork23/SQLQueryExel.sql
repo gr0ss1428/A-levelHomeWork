@@ -152,21 +152,22 @@ BEGIN
 	RETURN @Result
 END;
 
+CREATE OR ALTER VIEW OrdersInfo
+AS
+	SELECT od.OrderId, o.OrderDate, o.ShipDate, sm.Ship_Mode, o.CustomerId, c.Name, s.SegmentName, a.Country, a.City, a.State, a.PostalCode, a.Region,
+	od.ProductId, c2.CategoryName AS Category, c1.CategoryName AS [Sub Category], p.ProductName,dbo.GetSaleOrder(P.Sale,od.Quantity,od.Discount) AS Sales, od.Quantity, od.Discount, od.Profit
+	FROM OrderData od
+	JOIN [Order] o ON od.OrderId=o.OrderId
+	JOIN ShipMode sm ON o.ShipModeId = sm.ShipModeId
+	JOIN Customer c ON o.CustomerId = c.CustomerId
+	JOIN Segment s ON c.SegmentId= s.SegmentId
+	JOIN Address a ON o.PostalCode=a.PostalCode
+	JOIN Product p ON od.ProductId = p.ProductId
+	JOIN Category c1 ON p.CategoryId = c1.CategoryId
+	JOIN Category c2 ON c1.ParentCategoryId=c2.CategoryId;
+GO
 
-SELECT od.OrderId, o.OrderDate, o.ShipDate, sm.Ship_Mode, o.CustomerId, c.Name, s.SegmentName, a.Country, a.City, a.State, a.PostalCode, a.Region,
-od.ProductId, c2.CategoryName AS Category, c1.CategoryName AS [Sub Category], p.ProductName,dbo.GetSaleOrder(P.Sale,od.Quantity,od.Discount) AS Sales, od.Quantity, od.Discount, od.Profit
-FROM OrderData od
-JOIN [Order] o ON od.OrderId=o.OrderId
-JOIN ShipMode sm ON o.ShipModeId = sm.ShipModeId
-JOIN Customer c ON o.CustomerId = c.CustomerId
-JOIN Segment s ON c.SegmentId= s.SegmentId
-JOIN Address a ON o.PostalCode=a.PostalCode
-JOIN Product p ON od.ProductId = p.ProductId
-JOIN Category c1 ON p.CategoryId = c1.CategoryId
-JOIN Category c2 ON c1.ParentCategoryId=c2.CategoryId
-
-
-
+SELECT * FROM OrdersInfo oi
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Тут темповые вещи для некоторых проверок
 IIF(Discount=0,Sales/Quantity,Sales/Quantity/(1-o.Discount))
