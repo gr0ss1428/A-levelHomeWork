@@ -137,12 +137,16 @@ CREATE TABLE OrderData
 	Discount REAL DEFAULT 0,
 	Profit REAL DEFAULT 0
 );
+--DELETE OrderData WHERE OrderId='CA-2015-103135' AND ProductId='OFF-BI-10000069' AND Quantity=6
 --ALTER TABLE OrderData ADD PRIMARY KEY(OrderId, ProductId)
 INSERT INTO OrderData (OrderId, ProductId, Quantity, Discount, Profit)
-SELECT o.[Order ID], o.[Product ID], o.Quantity, o.Discount, o.Profit FROM Orders$ o
+SELECT DISTINCT o.[Order ID], o.[Product ID], o.Quantity, o.Discount, o.Profit FROM Orders$ o
 
-SELECT DISTINCT s.[Row ID],s.[Order Date], s.[Order ID], s.[Customer ID], s.[Product ID]  FROM Sheet1$ s WHERE s.[Order ID]='CA-2015-103135'
+SELECT  s.[Row ID],s.[Order Date], s.[Order ID], s.[Customer ID], s.[Product ID]  FROM Sheet1$ s WHERE s.[Order ID]='CA-2015-103135'
 
+
+
+SELECT  * FROM OrderData od WHERE od.OrderId='CA-2015-103135'
 --Общая картина
 CREATE OR ALTER FUNCTION GetSaleOrder(@Sales MONEY, @Quantity REAL, @Discount REAL) RETURNS MONEY
 AS
@@ -171,7 +175,7 @@ GO
 
 SELECT * FROM OrdersInfo oi
 
-
+SELECT DISTINCT s.[Order ID], s.[Order Date], s.[Customer ID], s.[Product ID] FROM Sheet1$ s WHERE s.[Order ID]='CA-2015-103135'
 
 
 
