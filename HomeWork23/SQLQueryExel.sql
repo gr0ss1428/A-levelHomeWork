@@ -2,6 +2,11 @@
 -- Импортировал Exel фаил с помощью SQL Server 2019 RC1 Import and Export Data  https://docs.microsoft.com/en-us/sql/integration-services/import-export-data/get-started-with-this-simple-example-of-the-import-and-export-wizard?view=sql-server-ver15
 USE HomeWork23Exel
 
+-- Так наверное надо сделать что бы имя импортированной таблицы совпадали с моими выборками
+CREATE OR ALTER VIEW Orders$
+AS
+	SELECT * FROM  Sheet1$-- имя импортированной таблицы
+GO
 
 --Разбераем сегменты
 -- создаем таблицу сегменты и заполняем её
@@ -63,6 +68,7 @@ CREATE TABLE Category
 --заполняем категориями
 INSERT INTO dbo.Category (CategoryName)
 SELECT o.Category FROM dbo.Orders$ o GROUP BY o.Category ORDER BY o.Category
+
 --заполняем субкатегориями
 INSERT INTO dbo.Category (CategoryName,ParentCategoryId)
 SELECT  o.[Sub-Category], c.CategoryId FROM Orders$ o
@@ -168,6 +174,11 @@ AS
 GO
 
 SELECT * FROM OrdersInfo oi
+
+
+
+
+
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Тут темповые вещи для некоторых проверок
 IIF(Discount=0,Sales/Quantity,Sales/Quantity/(1-o.Discount))
@@ -189,6 +200,7 @@ SELECT DISTINCT o.City,o.[Postal Code] FROM Orders$ o WHERE o.[Postal Code]=9202
 
 USE master
 
+ALTER DATABASE HomeWork23Exel SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
 DROP DATABASE HomeWork23Exel;
 
 DELETE dbo.Segment WHERE dbo.Segment.Id>3;
