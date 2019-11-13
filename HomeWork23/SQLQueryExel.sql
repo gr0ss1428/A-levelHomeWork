@@ -99,10 +99,7 @@ CREATE OR ALTER FUNCTION GetSale(@Sales MONEY,@Quantity MONEY,@Discount MONEY) R
 AS
 BEGIN
  DECLARE @Result MONEY
-  IF @Discount=0 
-  	SET @Result=(@Sales/@Quantity);
-  ELSE
-  	SET @Result=(@Sales/@Quantity/(1-@Discount));
+   SET @Result=(@Sales/@Quantity/(1-@Discount));
  RETURN @Result;
 END;
 
