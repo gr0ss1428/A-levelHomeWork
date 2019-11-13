@@ -11,8 +11,18 @@ namespace View
     {
         static void Main(string[] args)
         {
-            Control control = new Control(@"Data Source=ELEKTRA;Initial Catalog=GameStories;Integrated Security=True");
-            control.CreateGenre(new GenreToDB() { Description = "Shoot and run", Name = "Shooter2" });
+            ExeResult res;
+            ControlGenre controlGenre = new ControlGenre(@"Data Source=ELEKTRA;Initial Catalog=GameStories;Integrated Security=True",600,60);
+             res=controlGenre.Create(new GenreModel() { Description = "Think", Name = "Strategy" });
+
+            controlGenre.Update(new GenreModel() { Id =7, Description = "Shoot and run and die", Name = "Shooter" });
+
+            GenreModel genre;
+            res= controlGenre.GetById(9,out genre);
+
+            Console.ReadKey();
+
+            controlGenre.Delete(new GenreModel() { Id = 7, Description = "Shoot and run and die", Name = "Shooter" });
         }
     }
 }

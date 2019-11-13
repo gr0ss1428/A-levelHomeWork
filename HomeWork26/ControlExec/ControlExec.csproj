@@ -44,11 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Control.cs" />
+    <Compile Include="ControlGenre.cs" />
+    <Compile Include="ControlPublisher.cs" />
+    <Compile Include="ControlTools.cs" />
     <Compile Include="ExeResult.cs" />
-    <Compile Include="Model\GameToDB.cs" />
-    <Compile Include="Model\GenreToDB.cs" />
-    <Compile Include="Model\PublisherToDB.cs" />
+    <Compile Include="IControl.cs" />
+    <Compile Include="Model\GameModel.cs" />
+    <Compile Include="Model\GenreModel.cs" />
+    <Compile Include="Model\PublisherModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
