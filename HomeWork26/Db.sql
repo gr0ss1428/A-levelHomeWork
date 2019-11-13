@@ -1,0 +1,28 @@
+CREATE DATABASE GameStories;
+
+USE GameStories
+
+CREATE TABLE Publishers
+(
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    [Name] NVARCHAR(60) NOT NULL,
+    License NVARCHAR(100) NOT NULL
+)
+
+CREATE TABLE Genres
+(
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    [Name] NVARCHAR(60) NOT NULL,
+    [Description] NVARCHAR(600) NULL,
+)
+
+CREATE TABLE Games
+(
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    [Name] NVARCHAR(60) NOT NULL, 
+    YearPublishing INT NOT NULL,
+    GenreId INT NULL FOREIGN KEY REFERENCES Genres(Id) ON DELETE SET NULL,
+    PublicherId INT NULL FOREIGN KEY REFERENCES Publishers(Id) ON DELETE SET NULL,
+    UNIQUE([Name],YearPublishing)
+)
+
