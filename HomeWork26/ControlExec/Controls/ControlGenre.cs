@@ -7,10 +7,9 @@ using ControlExec.Model;
 using DataBaseDriver;
 using DataBaseDriver.Model;
 
-
-namespace ControlExec
+namespace ControlExec.Controls
 {
-    public class ControlGenre : IControl<GenreModel>
+    internal class ControlGenre : IControl<GenreModel>
     {
         private readonly IRepository<Genre> _repository;
         public int MaxDescriptionSize { get; set; }
@@ -27,7 +26,7 @@ namespace ControlExec
         public ExeResult Create(GenreModel genreToDB)
         {
             message.Clear();
-            ValidationNameSize(genreToDB);
+            ValidationCharacterLenght(genreToDB);
 
             Genre genreTemp = _repository.GetByName(genreToDB.Name);
             if (genreTemp != null)
@@ -36,21 +35,23 @@ namespace ControlExec
                     message.Add("This Name already exists.");
             }
 
-            if (message.Count != 0) return new ExeResult(true, message);
+            if (message.Count != 0) return new ExeResult(message);
 
             var genre = ControlTools.MapTo<GenreModel, Genre>(genreToDB);
-            var result = ControlTools.DbExec(_repository.Create, genre, "Genre not create");
-            return result;
+            genreToDB.Id = _repository.Create(genre);
+            if (genreToDB.Id == 0) return new ExeResult(new List<string>() { "Genre not create" });
+
+            return new ExeResult(new List<string>()); ;
         }
 
         public ExeResult Update(GenreModel genreToDB)
         {
             message.Clear();
             //Нужна ли эта проверка
-            //if (_genreRepository.GetById(genreToDB.Id) == null) message.Add("This genre is unknown.");
+            //if (_repository.GetById(genreToDB.Id) == null) message.Add("This genre is unknown.");
 
-            ValidationNameSize(genreToDB);
-            if (message.Count != 0) return new ExeResult(true, message);
+            ValidationCharacterLenght(genreToDB);
+            if (message.Count != 0) return new ExeResult(message);
 
             var genre = ControlTools.MapTo<GenreModel, Genre>(genreToDB);
             var result = ControlTools.DbExec(_repository.Update, genre, "Genre not update");
@@ -59,7 +60,8 @@ namespace ControlExec
 
         public ExeResult Delete(GenreModel genreToDB)
         {
-            // if (_genreRepository.GetById(genreToDB.Id) == null) return new ExeResult(true, new List<string>() { "This genre is unknown." });
+            message.Clear();
+            if (_repository.GetById(genreToDB.Id) == null) return new ExeResult(new List<string>() { "This genre is unknown." });
 
             var genre = ControlTools.MapTo<GenreModel, Genre>(genreToDB);
             var result = ControlTools.DbExec(_repository.Delete, genre, "Genre not delete");
@@ -68,23 +70,31 @@ namespace ControlExec
 
         public ExeResult GetById(int id, out GenreModel genreModel)
         {
+            message.Clear();
             genreModel = ControlTools.MapTo<Genre, GenreModel>(_repository.GetById(id));
-            if (genreModel == null) return new ExeResult(true, new List<string>() { "Unknown id" });
-            return new ExeResult(false, null);
+            if (genreModel == null) return new ExeResult(new List<string>() { "Unknown id" });
+            else ValidationCharacterLenght(genreModel);
+            if (message.Count != 0) return new ExeResult(message);
+            
+            return new ExeResult(new List<string>());
         }
 
         public ExeResult GetByName(string name, out GenreModel genreModel)
         {
+            message.Clear();
             genreModel = ControlTools.MapTo<Genre, GenreModel>(_repository.GetByName(name));
-            if (genreModel == null) return new ExeResult(true, new List<string>() { "Unknown name" });
-            return new ExeResult(false, null);
+            if (genreModel == null) return new ExeResult(new List<string>() { "Unknown name" });
+            else ValidationCharacterLenght(genreModel);
+            if(message.Count!=0) return new ExeResult(message);
+            
+            return new ExeResult(new List<string>());
         }
 
         public IEnumerable<GenreModel> GetAll()
         {
             List<GenreModel> genresModel = new List<GenreModel>();
             var result = _repository.GetAll();
-            ParallelLoopResult res = Parallel.ForEach(result.Where(i => i.Name.Length <= MaxNameSize && i.Description.Length <= MaxDescriptionSize), item =>
+            ParallelLoopResult res = Parallel.ForEach(result, item =>
               {
                   genresModel.Add(ControlTools.MapTo<Genre, GenreModel>(item));
               });
@@ -94,7 +104,7 @@ namespace ControlExec
 
             return genresModel;
         }
-        private void ValidationNameSize(GenreModel genreModel)
+        private void ValidationCharacterLenght(GenreModel genreModel)
         {
             if (genreModel.Name.Length > MaxNameSize) message.Add($"Long name >{MaxNameSize}.");
             if (genreModel.Description.Length > 600) message.Add($"Long description >{MaxDescriptionSize}.");

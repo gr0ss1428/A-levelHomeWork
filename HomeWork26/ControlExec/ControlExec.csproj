@@ -44,15 +44,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControlGenre.cs" />
-    <Compile Include="ControlPublisher.cs" />
-    <Compile Include="ControlTools.cs" />
+    <Compile Include="Controls\ControlGame.cs" />
+    <Compile Include="Controls\ControlGenre.cs" />
+    <Compile Include="Controls\ControlPublisher.cs" />
+    <Compile Include="Controls\ControlTools.cs" />
     <Compile Include="ExeResult.cs" />
-    <Compile Include="IControl.cs" />
+    <Compile Include="Controls\IControl.cs" />
     <Compile Include="Model\GameModel.cs" />
     <Compile Include="Model\GenreModel.cs" />
     <Compile Include="Model\PublisherModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataBaseDriver\DataBaseDriver.csproj">

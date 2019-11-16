@@ -12,7 +12,6 @@ namespace DataBaseDriver.Model
         public string Name { get; set; }
         public int YearPublishing { get; set; }
         public int GenreId { get; set; }
-        public Genre Genre { get; set; }
         public int PublicherId { get; set; }
     }
 }

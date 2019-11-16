@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using DataBaseDriver.Model;
 using Dapper;
 
+
 namespace DataBaseDriver
 {
     public class GenreRepository : IRepository<Genre>
@@ -20,9 +21,13 @@ namespace DataBaseDriver
 
         public int Create(Genre genre)
         {
-            var sql = "INSERT INTO Genres(Name, Description) VALUES(@Name,@Description)";
-            int result = DbExecute(sql, genre);
-            return result;
+            var sql = "INSERT INTO Genres(Name, Description) VALUES(@Name,@Description); SELECT CAST(SCOPE_IDENTITY() as int)";
+            int? Id;
+            using (SqlConnection sqlConnection = new SqlConnection(_connectionBaseStr))
+            {
+                Id = sqlConnection.Query<int>(sql, genre).FirstOrDefault();
+            }
+            return Id==null?0:(int)Id;
         }
 
         public Genre GetByName(string name)
@@ -58,7 +63,7 @@ namespace DataBaseDriver
             return result;
         }
 
-        public List<Genre> GetAll()
+        public IEnumerable<Genre> GetAll()
         {
             List<Genre> genres;
             string sql = "SELECT * FROM Genres";

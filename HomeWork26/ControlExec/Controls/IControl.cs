@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControlExec
+namespace ControlExec.Controls
 {
-   public interface IControl<T>
+    public interface IControl<T> where T : class
     {
         ExeResult Create(T model);
         ExeResult Delete(T model);

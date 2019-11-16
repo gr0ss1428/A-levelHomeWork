@@ -19,9 +19,13 @@ namespace DataBaseDriver
 
         public int Create(Publisher model)
         {
-            var sql = "INSERT INTO Publishers (Name, License) VALUES(@Name,@License)";
-            int result = DbExecute(sql, model);
-            return result;
+            var sql = "INSERT INTO Publishers (Name, License) VALUES(@Name,@License); SELECT CAST(SCOPE_IDENTITY() as int)";
+            int? Id;
+            using (SqlConnection sqlConnection = new SqlConnection(_connectionBaseStr))
+            {
+                Id = sqlConnection.Query<int>(sql, model).FirstOrDefault();
+            }
+            return Id == null ? 0 : (int)Id;
         }
 
         public int Delete(Publisher model)
@@ -31,20 +35,20 @@ namespace DataBaseDriver
             return result;
         }
 
-        public List<Publisher> GetAll()
+        public IEnumerable<Publisher> GetAll()
         {
-            List<Publisher> genres;
+            List<Publisher> publishers;
             string sql = "SELECT * FROM Publishers";
             using (SqlConnection sqlConnection = new SqlConnection(_connectionBaseStr))
             {
-                genres = sqlConnection.Query<Publisher>(sql).ToList();
+                publishers = sqlConnection.Query<Publisher>(sql).ToList();
             }
-            return genres;
+            return publishers;
         }
 
         public Publisher GetById(int id)
         {
-            var sql = $"SELECT * FROM Publishers g WHERE g.id ={id}";
+            var sql = $"SELECT * FROM Publishers p WHERE p.id ={id}";
             Publisher result;
             using (SqlConnection sqlConnection = new SqlConnection(_connectionBaseStr))
             {

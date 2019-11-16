@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using DataBaseDriver;
 using DataBaseDriver.Model;
 using ControlExec.Model;
-namespace ControlExec
+
+namespace ControlExec.Controls
 {
-    public class ControlPublisher: IControl<PublisherModel>
+    internal class ControlPublisher: IControl<PublisherModel>
     {
         private readonly IRepository<Publisher> _repository;
         public int MaxNameSize { get; set; }
@@ -32,15 +33,19 @@ namespace ControlExec
                 if(publisherTemp.Name==model.Name) message.Add("This Name already exists.");
             }
 
-            if (message.Count != 0) return new ExeResult(true, message);
+            if (message.Count != 0) return new ExeResult(message);
 
             var publisher= ControlTools.MapTo<PublisherModel, Publisher>(model);
-            var result = ControlTools.DbExec(_repository.Create, publisher, "Publisher not create");
-            return result;
+            model.Id = _repository.Create(publisher);
+            if (model.Id == 0) return new ExeResult(new List<string>() { "Publisher not create" });
+
+            return new ExeResult(new List<string>()); ;
         }
 
         public ExeResult Delete(PublisherModel model)
         {
+            if (_repository.GetById(model.Id) == null) return new ExeResult(new List<string>() { "This publisher is unknown." });
+
             var publisher = ControlTools.MapTo<PublisherModel, Publisher>(model);
             var result = ControlTools.DbExec(_repository.Delete, publisher, "Genre not delete");
             return result;
@@ -50,7 +55,7 @@ namespace ControlExec
         {
             List<PublisherModel> publishersModel = new List<PublisherModel>();
             var result = _repository.GetAll();
-            ParallelLoopResult res = Parallel.ForEach(result.Where(i=>i.Name.Length <= MaxNameSize), item =>
+            ParallelLoopResult res = Parallel.ForEach(result, item =>
             {
                 publishersModel.Add(ControlTools.MapTo<Publisher, PublisherModel>(item));
             });
@@ -64,20 +69,32 @@ namespace ControlExec
         public ExeResult GetById(int id, out PublisherModel model)
         {
             model = ControlTools.MapTo<Publisher, PublisherModel>(_repository.GetById(id));
-            if (model == null) return new ExeResult(true, new List<string>() { "Unknown id" });
-            return new ExeResult(false, null);
+            if (model == null) return new ExeResult(new List<string>() { "Unknown id" });
+            if (model.Name.Length > MaxNameSize)
+            {
+                return new ExeResult(new List<string>() { $"Long name >{MaxNameSize}." });
+            }
+
+            return new ExeResult( null);
         }
 
         public ExeResult GetByName(string name, out PublisherModel model)
         {
             model = ControlTools.MapTo<Publisher, PublisherModel>(_repository.GetByName(name));
-            if (model == null) return new ExeResult(true, new List<string>() { "Unknown name" });
-            return new ExeResult(false, null);
+            if (model == null) return new ExeResult(new List<string>() { "Unknown name" });
+            if (model.Name.Length > MaxNameSize) return new ExeResult( new List<string>() { $"Long name >{MaxNameSize}." });
+
+            return new ExeResult(new List<string>());
         }
 
         public ExeResult Update(PublisherModel model)
         {
-            throw new NotImplementedException();
+            message.Clear();
+            if (model.Name.Length > MaxNameSize) message.Add($"Long name >{MaxNameSize}.");
+
+            var publish = ControlTools.MapTo<PublisherModel, Publisher>(model);
+            var result = ControlTools.DbExec(_repository.Update, publish, "Publisher not update");
+            return result;
         }
     }
 }

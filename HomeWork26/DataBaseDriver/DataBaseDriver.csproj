@@ -44,7 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameRepository.cs" />
     <Compile Include="GenreRepository.cs" />
+    <Compile Include="IGameRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Model\Game.cs" />
     <Compile Include="Model\Genre.cs" />

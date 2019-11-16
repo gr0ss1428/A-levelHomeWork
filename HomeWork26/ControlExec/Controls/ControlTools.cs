@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-namespace ControlExec
+
+namespace ControlExec.Controls
 {
     internal static class ControlTools
     {
@@ -21,8 +22,8 @@ namespace ControlExec
         internal static ExeResult DbExec<T>(Func<T, int> func, T model, string Errormessage)
         {
             var result = func(model);
-            if (result != 0) return new ExeResult(false, null);
-            else return new ExeResult(true, new List<string>() { Errormessage });
+            if (result != 0) return new ExeResult(new List<string>());
+            else return new ExeResult(new List<string>() { Errormessage });
         }
     }
 }

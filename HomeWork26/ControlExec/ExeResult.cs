@@ -8,7 +8,17 @@ namespace ControlExec
 {
     public class ExeResult
     {
-        public bool Error { get; }
+        public bool IsError
+        {
+            get
+            {
+                if (Message != null)
+                {
+                    if (Message.Count != 0) return true;
+                }
+                return false;
+            }
+        }
         public List<string> Message { get; }
         public int ErrorCount
         {
@@ -19,9 +29,8 @@ namespace ControlExec
             }
         }
 
-        public ExeResult(bool error, List<string> Message)
+        public ExeResult( List<string> Message)
         {
-            Error = error;
             this.Message = Message;
         }
 
