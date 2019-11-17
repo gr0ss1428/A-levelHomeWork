@@ -113,8 +113,7 @@ namespace ControlExec
                          select g;
             return result;
         }
-
-
+        
         private ExeResult ValidPublisherAndGanre(GameModel model)
         {
             ExeResult result = new ExeResult(new List<string>());
