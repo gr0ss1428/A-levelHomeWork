@@ -106,13 +106,12 @@ namespace ControlExec
         {
             List<GameModel> games= controlGame.GetAll().AsParallel().Where(i => controlGame.AllValidation(i)).ToList();
             List<PublisherModel> publishers = controlPublisher.GetAll().ToList();
-            publishers.RemoveAll(i => i.License != license);
-            List<GameModel> gamesWithLicence = new List<GameModel>();
-            foreach(var item in publishers)
-            {
-                gamesWithLicence.AddRange(games.AsParallel().Where(i=>i.PublicherId==item.Id));
-            }
-            return gamesWithLicence;
+           
+            var result = from g in games
+                         join p in publishers on g.PublicherId equals p.Id
+                         where p.License.Equals(license)
+                         select g;
+            return result;
         }
 
 

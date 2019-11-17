@@ -42,6 +42,9 @@ namespace View
             GameModel game3 = new GameModel() { Name = "Метро-2", YearPublishing = 2005, GenreId = 1, PublicherId = 3 };
             res = service.CreateGame(game3);
 
+            GameModel game4 = new GameModel() { Name = "Метро", YearPublishing = 1998, GenreId = 1, PublicherId = 3 };
+            res = service.CreateGame(game4);
+
             res = service.CreateGame(game3);
 
             res = service.RemoveGenre(genre1);
