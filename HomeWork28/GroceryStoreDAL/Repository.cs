@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GroceryStoreDAL
 {
-    public class Repository<TDbContext> where TDbContext: DbContext
+    public class Repository<TDbContext> where TDbContext : DbContext
     {
         private TDbContext _Context { get; }
 
@@ -16,9 +16,9 @@ namespace GroceryStoreDAL
             _Context = context;
         }
 
-       public TEntity Add<TEntity>(TEntity model) where TEntity:class
+        public TEntity Add<TEntity>(TEntity model) where TEntity : class
         {
-            TEntity result= _Context.Set<TEntity>().Add(model);
+            TEntity result = _Context.Set<TEntity>().Add(model);
             int changes = _Context.SaveChanges();
             return changes == 0 ? null : result;
         }
