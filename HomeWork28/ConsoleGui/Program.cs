@@ -48,7 +48,7 @@ namespace ConsoleGui
 
             
             ICollection<UserProduct> userProductsStones = st.GetByStone(4);
-            Console.WriteLine($"\nStone={userProductsStones.Count}");
+            Console.WriteLine($"\nStone={4}");
             foreach (var item in userProductsStones)
             {
                 Console.WriteLine($"id:{item.Id} Name:{item.Name} Stones:{item.Stones.Count} TypeName:{item.JewerlyType.Name}");

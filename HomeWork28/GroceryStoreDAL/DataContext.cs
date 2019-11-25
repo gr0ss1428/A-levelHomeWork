@@ -12,6 +12,7 @@ namespace GroceryStoreDAL
     {
         public DataContext() : base("name=Jewerly")
         {
+            base.Configuration.LazyLoadingEnabled = false;
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<JewerlyType> JewerlyTypes { get; set; }
