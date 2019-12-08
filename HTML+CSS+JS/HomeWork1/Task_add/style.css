@@ -1,0 +1,67 @@
+.container
+{
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    flex-flow: column wrap;
+    width: 200px ;
+    height: 200px;
+}
+.container div{
+    margin: 5px;
+}
+.container2
+{
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    flex-flow: column wrap;
+    width: 330px;
+    height: 100px;
+}
+.container2 div{
+    margin: 5px;
+}
+
+#i1
+{
+    background-color: green;
+    width: 100px;
+    height: 100%;
+}
+#i2
+{
+    background-color: slateblue;
+    width: 100px;
+    height: calc(50% - 10px);
+}
+#i3
+{
+    background-color: blue;
+    width: 100px;
+    height: calc(50% - 10px);
+}
+#i4
+{
+    background-color: goldenrod;
+    width: 100px;
+    height: calc(75% - 10px);
+}
+#i5
+{
+    background-color: mediumaquamarine;
+    width: 100px;
+    height: calc(25% - 10px);
+}
+#i6
+{
+    background-color: red;
+    width: 30%;
+    height: 100%;
+}
+#i7
+{
+    background-color: darkslateblue;
+    width: calc(71% - 24px);
+    height: 100%;
+}
