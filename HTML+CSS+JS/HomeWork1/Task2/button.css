@@ -1,0 +1,16 @@
+.button {
+  color: black;
+  text-decoration: none;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+  margin: 5px;
+  /* background-color: pink; */
+  background: linear-gradient(rgb(243,179,210),rgb(247,203,225),rgb(243,179,210));
+  border-radius: 40px;
+  text-align: center;
+  display: inline-block;
+  border: 1px solid white;
+  box-shadow: 0 0 1px 1px rgb(243,179,210), 0 0 1px 2px white, 0 0 2px 2px silver;
+}

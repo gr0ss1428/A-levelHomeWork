@@ -1,0 +1,53 @@
+@font-face
+{
+    font-family: font1;
+    src: url("Font/1.ttf");
+}
+@font-face
+{
+    font-family: font2;
+    src: url("Font/2.ttf");
+}
+@font-face
+{
+    font-family: font3;
+    src: url("Font/3.ttf");
+}
+@font-face
+{
+    font-family: font4;
+    src: url("Font/4.ttf");
+}
+@font-face
+{
+    font-family: font5;
+    src: url("Font/5.ttf");
+}
+p.font_1
+{
+    font-family: font1;
+}
+p.font_2
+{
+    font-family: font2;
+}
+p.font_3
+{
+    font-family: font3;
+}
+p.font_4
+{
+    font-family: font4;
+}
+p.font_5
+{
+    font-family: font5;
+}
+
+a{
+    font-family: font5;
+}
+footer
+{
+    text-align: center;
+}

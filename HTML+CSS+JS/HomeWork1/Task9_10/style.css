@@ -1,0 +1,21 @@
+.article
+{
+  border: 1px solid red;
+  border-radius: 0.5em;
+  padding: 2em 1em 2em 1em;
+  width: 700px;
+  position: fixed;
+  top: 10%;
+  left: 10px;
+}
+p{
+    text-align: justify;
+}
+.some_text
+{
+    margin-left:750px ;
+    border: 1px solid red;
+    border-radius: 0.5em;
+    padding: 10px;
+    text-align: justify;
+}
