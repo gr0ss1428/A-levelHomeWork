@@ -1,0 +1,28 @@
+.link_header
+{
+ text-decoration: none;
+ color: white;
+}
+.link_header:visited
+{
+    text-decoration: none;
+    color: white;
+}
+.bg
+{
+    background: url(beautiful.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+body
+{
+ background-color: rgb(241, 240, 245);
+}
+.icon_star
+{
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+}
