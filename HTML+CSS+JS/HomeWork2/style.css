@@ -16,7 +16,7 @@
     background-size: cover;
     position: relative;
 }
-body
+.background_main_color
 {
  background-color: rgb(241, 240, 245);
 }
