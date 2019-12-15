@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div >
+        <h1> 11. Дошли? Прекрасно.</h1>
+        <p> Напишите скрипт, который считает количество секунд в часе, в сутках, в месяце.</p>
+        Спрашиваем у пользователя через prompt число.
+        <p>Если пользователь ввёл 10h, то мы выводим ему количество секунд за 10 часов.</p>
+        <p>Если пользователь ввёл 10d, то мы выводим ему количество секунд за 10 дней.</p>
+        <p>Если пользователь ввёл 10w, то мы выводим ему количество секунд за 10 недел.</p>
+        <p>Если пользователь ввёл 10m, то мы выводим ему количество секунд за 10 месяц.</p>
+        <div style="border: 1px solid grey;width: 400px; display: flex;padding: 10px;">
+            <input style="padding: 10px;" type="text" name="" id="value">
+            <input type="submit" value="Расчитать" onclick="calculation()">
+        </div>
+    </div>
+    <div style="border-top: 1px solid grey;" id="result">
+
+    </div>
+</body>
+<script>
+    function calculation()
+    {
+      let value=document.getElementById("value").value;
+      let num=value.substring(0,value.length-1);
+      if(!isNaN(Number (num)))
+      {
+          let res="";
+         switch(value[value.length-1])
+         {
+             case'h':
+             num=Number(num);
+             res=num*3600;
+             break;
+             case 'd':
+             num=Number(num);
+             res=num*24*3600;
+             break;
+             case 'w':
+             num=Number(num);
+             res=num*7*24*3600;
+             break;
+             case 'm':
+             num=Number(num);
+             res=num*31*24*3600;
+             break;
+         }
+         if(res!="")  document.getElementById("result").innerText=res+'c';
+         else   document.getElementById("result").innerText=res;
+      }
+      else
+      {
+        document.getElementById("result").innerText="Некорректно введено значение";
+      }
+    }
+</script>
+</html>
