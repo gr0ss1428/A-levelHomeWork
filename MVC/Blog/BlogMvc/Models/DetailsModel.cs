@@ -17,7 +17,8 @@ namespace BlogMvc.Models
         [DataType(DataType.MultilineText)]
         public string Body { get; set; }
         public string Image { get; set; }
-        //[DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
         public DateTime DateTime { get; set; }
         public bool IsActive { get; set; }
         public int AuthorId { get; set; }
