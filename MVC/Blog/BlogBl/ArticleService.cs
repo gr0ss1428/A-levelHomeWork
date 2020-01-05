@@ -11,25 +11,24 @@ using AutoMapper;
 namespace BlogBl
 {
 
-    public class ArticleService<T> :IService<T>
-        where T:class
+    public class ArticleService : GService<ArticleBl,Article>//, IService<ArticleBl>
     {
         //TODO:
-        private readonly IGenericRepository<Article> _repository;
+       /* private readonly IGenericRepository<Article> _repository;
 
         public ArticleService()
         {
             _repository = new GenericRepository<Article>();
         }
 
-        public void Add(T model)
+        public void Add(ArticleBl model)
         {
-            _repository.Create(MapperTools.MapTo<T, Article>(model));
+            _repository.Create(MapperTools.MapTo<ArticleBl, Article>(model));
         }
 
-        public void Delete(T model)
+        public void Delete(ArticleBl model)
         {
-            _repository.Remove(MapperTools.MapTo<T, Article>(model));
+            _repository.Remove(MapperTools.MapTo<ArticleBl, Article>(model));
         }
 
         public void Delete(int id)
@@ -37,22 +36,22 @@ namespace BlogBl
             _repository.Remove(id);
         }
 
-        public ICollection<T> GetAll()
+        public ICollection<ArticleBl> GetAll()
         {
             var articles = _repository.GetAll();
-            return MapperTools.MapToCollection<Article, T>(articles);
+            return MapperTools.MapToCollection<Article, ArticleBl>(articles);
         }
 
-        public T GetById(int id)
+        public ArticleBl GetById(int id)
         {
            var articleEntity= _repository.FindById(id);
             //TODO: Install mapper
-            return MapperTools.MapTo<Article, T>(articleEntity);
+            return MapperTools.MapTo<Article, ArticleBl>(articleEntity);
         }
 
-        public void Update(T model)
+        public void Update(ArticleBl model)
         {
-            _repository.Update(MapperTools.MapTo<T, Article>(model));
-        }
+            _repository.Update(MapperTools.MapTo<ArticleBl, Article>(model));
+        }*/
     }
 }

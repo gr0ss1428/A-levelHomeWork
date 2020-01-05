@@ -14,9 +14,9 @@ namespace BlogMvc.Controllers
     {
         private readonly IService<ArticleBl> _articleService;
         
-        public ArticleController()
+        public ArticleController(IService<ArticleBl> service)
         {
-            _articleService = new ArticleService<ArticleBl>();
+            _articleService = service;//new ArticleService<ArticleBl>();
         }
         // GET: Article
         public ActionResult Index()

@@ -15,11 +15,13 @@ namespace BlogMvc.ApiControllers
     {
         private readonly IService<ArticleBl> _articleService;
 
-        public ArticleController()
+        public ArticleController(IService<ArticleBl> service)
         {
-            _articleService = new ArticleService<ArticleBl>();
+            _articleService = service;//new ArticleService<ArticleBl>();
         }
+        
         // GET: api/Article
+        [HttpGet]
         public IEnumerable<DetailsModel> GetAllArticle()
         {
             // return new string[] { "value1", "value2" };
@@ -28,6 +30,7 @@ namespace BlogMvc.ApiControllers
         }
 
         // GET: api/Article/5
+        [HttpGet]
         public DetailsModel GetArticle(int id)
         {
             var res = MapperTools.MapTo<ArticleBl, DetailsModel>(_articleService.GetById(id));

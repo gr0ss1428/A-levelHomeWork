@@ -10,7 +10,7 @@ namespace BlogMvc.Models
 {
         public int Id { get; set; }
         [Display(Name = "Заголовок")]
-        [Required(ErrorMessage = "1Поле должно быть установлено")]
+        [Required(ErrorMessage = "Поле должно быть установлено")]
         [StringLength(maximumLength:50,MinimumLength=1)]
         public string Title { get; set; }
         public string SubTitle { get; set; }
