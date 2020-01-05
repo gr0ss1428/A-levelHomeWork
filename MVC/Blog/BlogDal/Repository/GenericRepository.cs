@@ -29,9 +29,9 @@ namespace BlogDal.Repository
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         private readonly IDatabase _db;
-        public GenericRepository()
+        public GenericRepository(IDatabase database)
         {
-            _db = new Database("DBBLOG");
+            _db = database;//new Database(connectionStringName: "DBBLOG");
         }
         public void Create(T item)
         {

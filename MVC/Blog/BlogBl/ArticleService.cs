@@ -13,6 +13,10 @@ namespace BlogBl
 
     public class ArticleService : GService<ArticleBl,Article>//, IService<ArticleBl>
     {
+        public ArticleService(IGenericRepository<Article> repository):base(repository)
+        {
+
+        }
         //TODO:
        /* private readonly IGenericRepository<Article> _repository;
 

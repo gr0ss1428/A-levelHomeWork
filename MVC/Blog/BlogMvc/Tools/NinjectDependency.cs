@@ -30,9 +30,9 @@ namespace BlogMvc.Tools
 
         public void AddBindings()
         {
-            kernel.Bind<IService<ArticleBl>>().To<ArticleService>();//.WhenInjectedInto<Controllers.ArticleController>();//.WhenInjectedInto<ApiControllers.ArticleController>();
-           // kernel.Bind<IService<ArticleBl>>().To<ArticleService>().WhenInjectedInto<ApiControllers.ArticleController>();
-
+            kernel.Bind<IService<ArticleBl>>().To<ArticleService>().WhenInjectedInto<Controllers.ArticleController>();//.WhenInjectedInto<ApiControllers.ArticleController>();
+            // kernel.Bind<IService<ArticleBl>>().To<ArticleService>().WhenInjectedInto<ApiControllers.ArticleController>();
+            NinjectDI_Bl.RegisterServices(kernel);
         }
     }
 }

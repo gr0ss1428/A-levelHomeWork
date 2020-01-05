@@ -26,9 +26,9 @@ namespace BlogBl
     {
         private readonly IGenericRepository<DalModel> _repository;
 
-        public GService()
+        public GService(IGenericRepository<DalModel> repository)
         {
-            _repository = new GenericRepository<DalModel>();
+            _repository = repository;
         }
         public void Add(BlModel model)
         {
