@@ -49,7 +49,7 @@ namespace BlogMvc.App_Start
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
                 RegisterServices(kernel);
 
-                //GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);//For web api
+                GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);//For web api
 
                 return kernel;
             }
