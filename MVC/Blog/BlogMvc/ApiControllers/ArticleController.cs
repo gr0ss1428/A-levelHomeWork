@@ -8,16 +8,19 @@ using BlogMvc.Tools;
 using BlogMvc.Models;
 using BlogBl.BlModel;
 using BlogBl;
+using BlogMvc.Service;
 
 namespace BlogMvc.ApiControllers
 {
     public class ArticleController : ApiController
     {
         private readonly IService<ArticleBl> _articleService;
+       
 
         public ArticleController(IService<ArticleBl> service)
         {
             _articleService = service;//new ArticleService<ArticleBl>();
+            
         }
         
         // GET: api/Article

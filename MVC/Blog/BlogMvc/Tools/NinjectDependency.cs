@@ -7,6 +7,7 @@ using Ninject.Web.Common;
 using System.Web.Mvc;
 using BlogBl;
 using BlogBl.BlModel;
+using BlogMvc.Service;
 
 namespace BlogMvc.Tools
 {
@@ -32,6 +33,7 @@ namespace BlogMvc.Tools
         {
             kernel.Bind<IService<ArticleBl>>().To<ArticleService>().WhenInjectedInto<Controllers.ArticleController>();//.WhenInjectedInto<ApiControllers.ArticleController>();
             // kernel.Bind<IService<ArticleBl>>().To<ArticleService>().WhenInjectedInto<ApiControllers.ArticleController>();
+            kernel.Bind<IEmailService>().To<EmailService>();
             NinjectDI_Bl.RegisterServices(kernel);
         }
     }

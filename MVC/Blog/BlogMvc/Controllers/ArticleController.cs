@@ -7,16 +7,19 @@ using System.Web.Mvc;
 using BlogMvc.Tools;
 using BlogMvc.Models;
 using BlogBl.BlModel;
+using BlogMvc.Service;
 
 namespace BlogMvc.Controllers
 {
     public class ArticleController : Controller
     {
         private readonly IService<ArticleBl> _articleService;
-        
-        public ArticleController(IService<ArticleBl> service)
+        private readonly IEmailService _emailService;
+
+        public ArticleController(IService<ArticleBl> service, IEmailService eservice)
         {
             _articleService = service;//new ArticleService<ArticleBl>();
+            _emailService = eservice;
         }
         // GET: Article
         public ActionResult Index()
@@ -58,6 +61,11 @@ namespace BlogMvc.Controllers
                     model.DateTime = DateTime.Now;
                     model.AuthorId = 1;
                     _articleService.Add(MapperTools.MapTo<DetailsModel, ArticleBl>(model));
+                    string subject = "Creatr Article";
+                    string to = "gr0ss@sctbpe.com";
+                    string from = "gr0ss1428@gmail.com";
+                    string body = model.Title;
+                    _emailService.SendSmpt(subject,body,from,to);
                     return RedirectToAction("ListArticle");
                 }
                 return View(model);
